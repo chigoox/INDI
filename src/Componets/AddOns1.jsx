@@ -4,7 +4,6 @@ const AddOns1 = ({ item, myPackage, setMyPackage }) => {
     const selected = myPackage?.addOn1?.includes(item)
     const pickAddon1 = () => {
         if (selected) {
-            console.log(myPackage.addOn1.length == 1)
 
             setMyPackage(old => {
                 return (
@@ -19,7 +18,7 @@ const AddOns1 = ({ item, myPackage, setMyPackage }) => {
             })
         } else {
 
-            setMyPackage(old => ({ ...old, addOn1: item == 'None' ? [] : old.addOn1 ? [...old.addOn1, item] : [item] }))
+            setMyPackage(old => ({ ...old, addOn1: item == 'None' ? ['None'] : old.addOn1 ? [...old.addOn1, item].filter(i => i != 'None') : [item] }))
 
 
         }

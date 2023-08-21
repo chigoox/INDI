@@ -5,12 +5,14 @@ import Packages from '../Componets/Packages'
 import AddOns1 from '../Componets/AddOns1'
 import AddOns2 from '../Componets/AddOns2'
 import AddOns3 from '../Componets/AddOns3'
+import Bookings from './SubPages/Booking'
 
 
 function Home() {
     const [myPackage, setMyPackage] = useState({})
     const [selectedAddOn1, setSelectedAddOn1] = useState(false)
     const [selectedAddOn2, setSelectedAddOn2] = useState(false)
+    const [booking, setBooking] = useState(false)
     const Package = ['Regular Massage', 'sensual Massage']
     const addOn30 = ['Hot Stones', 'Hot Wax', 'Shroom Tea', 'Smoking', 'None']
     const addOn100 = ['Double Trouble', 'Facials', 'None']
@@ -21,7 +23,7 @@ function Home() {
     const hasAddOn2 = myPackage?.addOn2?.length > 0
 
 
-    console.log(myPackage?.addOn2)
+    console.log(myPackage)
 
     useEffect(() => {
         if (!hasAddOn1) setSelectedAddOn1(hasAddOn2 && hasAddOn1)
@@ -39,12 +41,13 @@ function Home() {
 
     return (
         <div className='center relative'>
+            {booking && <Bookings setBooking={setBooking} />}
             {hasAddOn1 && <div className={`absolute  z-20 top-12 left-0 ${selectedAddOn2 ? 'h-full' : 'h-0'} trans-slow overflow-hidden w-full bg-black`}>
                 <div className='h-[40rem] md:w-1/2 m-auto center gap-2 flex-col'>
                     {addOn200.map(item => (<AddOns3 item={item} setMyPackage={setMyPackage} myPackage={myPackage} key={item} />))}
 
                 </div>
-                {myPackage?.addOn3?.length > 0 && <button onClick={() => { setSelectedAddOn2(true) }} className='  right-0 h-10 w-full center  bg-white'>
+                {myPackage?.addOn3?.length > 0 && <button onClick={() => { setBooking(true) }} className='  right-0 h-10 w-full center  bg-white'>
                     <h1>Book Massage</h1>
 
                 </button>}

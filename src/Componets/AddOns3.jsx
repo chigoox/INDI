@@ -1,7 +1,6 @@
 import React from 'react'
 
 function AddOns3({ item, myPackage, setMyPackage }) {
-    console.log(myPackage.addOn3)
 
     const selected = myPackage?.addOn3?.includes(item)
     const pickaddOn3 = () => {
@@ -11,14 +10,14 @@ function AddOns3({ item, myPackage, setMyPackage }) {
                 return (
                     {
                         ...old,
-                        addOn3: (old.addOn3.length > 1 && item != 'None') ? old.addOn3.filter(i => i != item) : []
+                        addOn3: (old.addOn3.length > 1 && item != 'None') ? old.addOn3.filter(i => i != item) : ['None']
 
                     }
                 )
             })
         } else {
 
-            setMyPackage(old => ({ ...old, addOn3: item == 'None' ? [] : old.addOn3 ? [...old.addOn3, item] : [item] }))
+            setMyPackage(old => ({ ...old, addOn3: item == 'None' ? ['None'] : old.addOn3 ? [...old.addOn3, item].filter(i => i != 'None') : [item] }))
 
         }
 
