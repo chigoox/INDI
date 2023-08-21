@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Bree+Serif&family=Fredoka+One&family=Heebo:wght@500&family=Karla&family=Lilita+One&family=Lora&family=Marck+Script&family=Mr+Dafoe&family=Nerko+One&family=Oswald&family=Poppins:wght@500&family=Righteous&family=Roboto:wght@500&family=Share&family=Share+Tech&family=Solway:wght@500&family=Teko:wght@400;700&family=Ubuntu&family=Yellowtail&display=swap');
+@import url(https://db.onlinewebfonts.com/c/d7e8a95865396cddca89b00080d2cba6?family=SoDo+Sans+SemiBold);
+
+.StarbucksFont{
+    font-family: 'SoDo Sans SemiBold';
+}
+
+*{
+    font-family: 'Poppins';
+}
+
+.rounded-full5{
+    border-radius: 100%;
+}
