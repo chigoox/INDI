@@ -30,7 +30,7 @@ import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react"
 import AvailableHours from "../../Componets/Bookings/AvailableHours"
 import TimesBar from '../../Componets/Bookings/TimesBar'
 import ReactDropdown from 'react-dropdown'
-import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
+import { AiFillBackward, AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowUp } from 'react-icons/ai'
 
 
 const reservations = [
@@ -45,7 +45,7 @@ const reservations = [
 
 
 
-const Bookings = () => {
+const Bookings = ({ setBooking }) => {
     const [bookingInfo, setBookingInfo] = useState({})
     // display div of availables times
     const [calendarTouched, setCalendarTouched] = useState(false)
@@ -93,7 +93,7 @@ const Bookings = () => {
                 start: startHour,
                 end: endHour
             },
-            { step: 30 }
+            { step: bookingInfo.extraTime == 'No' ? 30 : 60 }
         )
 
         // filter the available hours
@@ -164,7 +164,7 @@ const Bookings = () => {
 
 
 
-
+            <button onClick={() => { setBooking(false) }} className='w-8 h-8 rounded-full ml-2'><AiOutlineArrowLeft size={32} color='pink' /></button>
             {
                 <div className='center flex-col mb-20'>
                     <h1 className='text-5xl text-center mb-6 '>Bookings</h1>
@@ -176,19 +176,20 @@ const Bookings = () => {
                         menuClassName=' h-fit w-full center flex-col gap-4 overflow-hidden bg-black-800'
                         arrowClosed={<AiOutlineArrowDown size={24} />}
                         arrowOpen={<AiOutlineArrowUp size={24} />}
-                        options={bookingOptions} onChange={(e) => { setBookingInfo(old => ({ ...old, book: e.value })) }}
+                        options={bookingOptions}
+                        onChange={(e) => { setBookingInfo(old => ({ ...old, extraTime: e.value })) }}
                         value={''}
                         placeholder="Add an Extra 30 Mins"
                         placeholderClassName='text-black text-3xl text-center' />
 
 
                 </div>}
-            {bookingInfo.book &&
+            {bookingInfo.extraTime &&
                 <div>
                     <h1 className='text-center'>When would you like to meet?</h1>
                 </div>}
             {
-                <div className={`${bookingInfo.book ? 'opacity-100' : 'opacity-0 z-0'} trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    bg-black mb-10 md:mb-24`}>
+                <div className={`${bookingInfo.extraTime ? 'opacity-100' : 'opacity-0 z-0'} trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    bg-black mb-10 md:mb-24`}>
 
 
                     {/* calendar implementation */}
@@ -338,7 +339,7 @@ const Bookings = () => {
 
             }
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
-                <h1 className='text-2xl text-center'>{`You want to ${bookingInfo.book}, and meet on ${bookingInfo.apointment}`}</h1>
+                <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
                 <h1 className='text-center text-pink-700'>pay $50 depoit to comfirm booking</h1>
                 <button onClick={bookNow} className='h-12 w-32 bg-pink-700'>Book Now</button>
             </div>}

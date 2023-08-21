@@ -15,14 +15,14 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo }) => {
     }
 
     return (
-        <div className="flex border flex-col items-center gap-2 mt-4 p-4 h-[30rem]">
+        <div className="flex  flex-col items-center gap-2 mt-4 border-y  h-[30rem]">
             <span>
                 Available times:{" "}
                 <span className="font-semibold text-purple-500">
                     {freeTimes.length}
                 </span>
             </span>
-            <div className="grid lg:grid-cols-3 grid-cols-5 md:grid-cols-2   text-md gap-4 md:h-[35rem] hidescroll overflow-hidden overflow-y-scroll">
+            <div className="grid lg:grid-cols-3 grid-cols-5 md:grid-cols-2    text-md gap-4 md:h-[35rem] hidescroll p-4 overflow-y-scroll">
                 {freeTimes.map((hour, hourIdx) => (
                     <div key={hourIdx}>
                         <button
@@ -49,10 +49,10 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo }) => {
             </div>
             {selectedTime && (
                 <div className="w-full py-6">
-                    <span>reservation time is: </span>
-                    <span className="font-semibold text-pink-500 pl-1">
+                    <h1 className="text-center">reservation time is: </h1>
+                    <h1 className="font-semibold text-pink-500 pl-1 text-center">
                         {format(selectedTime, "MM-dd-yy hh:mm aaaaa'm'")}
-                    </span>
+                    </h1>
                     <div className="center w-full">
                         <button onClick={bookTime} className="h-12 w-full bg-purple-500">Select time</button>
                     </div>
