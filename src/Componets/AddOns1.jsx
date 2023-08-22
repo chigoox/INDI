@@ -25,7 +25,7 @@ const AddOns1 = ({ item, myPackage, setMyPackage }) => {
 
     }
     return (
-        <button onClick={pickAddon1} className={`h-[70%] md:h-[70%] w-[80%] md:w-full center relative rounded-2xl ${selected ? 'bg-pink-800  border-4 border-pink-700' : ''} text-white hover:scale-110 overflow-hidden  m-auto trans`}>
+        <button onClick={pickAddon1} className={`h-[70%] md:h-[70%] fadeInRight w-[80%] md:w-full center relative rounded-2xl ${selected ? 'bg-pink-800  border-4 border-pink-700' : ''} text-white hover:scale-110 overflow-hidden  m-auto trans`}>
             <h1 className=' absolute  center h-full  md:text-3xl  bg-black w-full  bg-opacity-25'>{item}</h1>
             <img className='h-full w-full object-cover'
                 src={

@@ -23,8 +23,8 @@ function AddOns3({ item, myPackage, setMyPackage }) {
 
     }
     return (
-        <button onClick={pickaddOn3} className={`h-[15%] md:h-[15%]  center relative ${selected ? ' text-pink-100  w-full ' : ' text-white text-xl w-[80%] md:w-[90%]'} hover:scale-110 overflow-hidden  m-auto trans`}>
-            <img className={`h-full  w-full  object-cover ${selected ? 'border-y-4 border-pink-700' : ''}`}
+        <button onClick={pickaddOn3} className={`h-[15%] md:h-[15%] fadeInZoom  center relative ${selected ? ' text-pink-100  w-full ' : ' text-white text-xl w-[80%] md:w-[90%]'} hover:scale-110 overflow-hidden  m-auto trans`}>
+            <img className={`h-full  w-full   object-cover ${selected ? 'border-y-4 border-pink-700' : ''}`}
                 src={
                     item == 'Ball Trampling' ?
                         'https://video-images.vice.com/test-uploads/articles/5e7e4d6d1511e6009c56768f/lede/1585335668717-3_27_2020_COCK_TRAMPLING_AND_BALL_BUSTING_CV.jpeg?crop=1xw:1xh;center,center&resize=1800:*'

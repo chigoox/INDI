@@ -23,7 +23,7 @@ function AddOns2({ item, myPackage, setMyPackage }) {
 
     }
     return (
-        <button onClick={pickAddon2} className={`h-[50%] md:h-[30%]  center relative ${selected ? ' text-pink-100  w-full ' : ' text-white text-xl w-[80%] md:w-[90%]'} hover:scale-110 overflow-hidden  m-auto trans`}>
+        <button onClick={pickAddon2} className={`h-[50%] fadeInZoom md:h-[30%]  center relative ${selected ? ' text-pink-100  w-full ' : ' text-white text-xl w-[80%] md:w-[90%]'} hover:scale-110 overflow-hidden  m-auto trans`}>
             <img className={`h-full  w-full  object-cover ${selected ? 'border-y-4 border-pink-700' : ''}`}
                 src={
                     item == 'Hot Stones' ?

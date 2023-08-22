@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App w-full h-fit bg-[#4d194d]  scroll-able ">
+    <div className="App w-full h-screen overflow-hidden bg-[#4d194d]  scroll-able ">
       <div className='h-12 bg-black center gap-2 w-full z-[999] fixed'>
         <a className='center gap-1 relative right-28 md:right-0' href="./">
           <h1 className='text-white'>iNDI</h1>

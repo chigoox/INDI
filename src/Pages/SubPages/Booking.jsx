@@ -160,7 +160,7 @@ const Bookings = ({ setBooking }) => {
         })
     }
     return (
-        <div className='z-30 bg-black absolute top-12  m-auto w-full text-white'>
+        <div className='z-30 bg-black absolute top-12  m-auto w-full text-white h-full hidescroll overflow-scroll'>
 
 
 
@@ -193,7 +193,7 @@ const Bookings = ({ setBooking }) => {
 
 
                     {/* calendar implementation */}
-                    <div className="flex flex-col gap-2 h-[450px] w-[380px] md:h-fit md:w-fit mb-10  m-auto my-0">
+                    <div className="flex flex-col gap-2 h-[450px] w-[380px] md:h-fit md:w-fit mb-10 fadeInZoom m-auto my-0">
                         {/* calendar header */}
                         <div className="grid grid-cols-3 md:w-[40rem] px-8">
                             <button
@@ -323,7 +323,7 @@ const Bookings = ({ setBooking }) => {
                         </div>
                     </div>
 
-                    <div className={cn(`hidden mx-auto`, calendarTouched && "block")}>
+                    <div className={cn(`hidden mx-auto fadeInZoom`, calendarTouched && "block")}>
                         <span className="flex items-center w-full justify-center gap-1">
                             <span>
                                 <h1 className='text-center'>Select reservation time</h1>
