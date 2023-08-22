@@ -141,8 +141,9 @@ const Bookings = ({ setBooking, myPackage }) => {
 
 
     ]
+
+    const total = (myPackage.addOn1.length * 100) + (myPackage.addOn2.length * 30) + (myPackage.addOn3.length * 200) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
     const bookNow = () => {
-        const total = (myPackage.addOn1.length * 100) + (myPackage.addOn2.length * 30) + (myPackage.addOn3.length * 200) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
         console.log(total)
 
         fetch('/.netlify/functions/CheckOut', {
@@ -150,7 +151,8 @@ const Bookings = ({ setBooking, myPackage }) => {
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: total
+                price: total,
+                name: myPackage.type
             })
         }).then(res => {
             res.json().then(res => {
@@ -341,7 +343,7 @@ const Bookings = ({ setBooking, myPackage }) => {
             }
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
-                <h1 className='text-center text-pink-700'>pay depoit half to comfirm booking</h1>
+                <h1 className='text-center text-pink-700'>depoit half to comfirm booking</h1>
                 <button onClick={bookNow} className='h-12 w-32 bg-pink-700'>Book Now</button>
             </div>}
 
