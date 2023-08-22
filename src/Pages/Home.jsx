@@ -13,7 +13,7 @@ function Home() {
     const [selectedAddOn1, setSelectedAddOn1] = useState(false)
     const [selectedAddOn2, setSelectedAddOn2] = useState(false)
     const [booking, setBooking] = useState(false)
-    const Package = ['Regular Massage', 'sensual Massage']
+    const Package = ['Standard Massage', 'sensual Massage']
     const addOn30 = ['Hot Stones', 'Hot Wax', 'Shroom Tea', 'Smoking', 'None']
     const addOn100 = ['Double Trouble', 'Facials', 'None']
     const addOn200 = ['Ball Trampling', 'Golden Shower', 'Mummification', 'Impact Play', 'Breath Play', 'Restraints', 'Queening', 'Foot Worship(Mine of course)', 'None']
@@ -57,20 +57,20 @@ function Home() {
                 </button>
             </div>}
             {Package.map(item => (<Packages item={item} setMyPackage={setMyPackage} myPackage={myPackage} key={item} />))}
-            {myPackage.type && <div className='w-1/2 p-2 '>
-                <div className='grid grid-cols-1 h-[16rem] md:h-full md:grid-cols-3 grid-flow-row gap-4 relative'>
+            {myPackage.type && <div className='w-1/2 '>
+                <div className='grid grid-cols-1 h-[16rem] md:h-full md:grid-cols-3 grid-flow-row gap-4 relative p-4'>
                     {addOn100.map(item => (<AddOns1 item={item} key={item} setSelectedAddOn1={setSelectedAddOn1} setMyPackage={setMyPackage} myPackage={myPackage} />))}
                     {(hasAddOn1 && !hasAddOn2) && <button onClick={() => { setSelectedAddOn1(true) }} className='absolute -top-10 right-0 h-10 w-full center  bg-white'>
                         <h1>Next</h1>
 
                     </button>}
                 </div>
-                <div className={`w-full trans-slow  center flex-col overflow-hidden ${(selectedAddOn1 && hasAddOn1) ? 'h-1/2 md:h-96 border-y' : 'h-0'}`}>
+                <div className={`w-full trans-slow relative  center flex-col overflow-hidden ${(selectedAddOn1 && hasAddOn1) ? 'h-[30rem] bottom-1 md:h-96 border-y' : 'h-0'}`}>
                     {(selectedAddOn1 && hasAddOn1) && <div className='grid md:grid-cols-3 grid-cols-1  h-full w-full  grid-rows-2 '>
                         {addOn30.map(item => (<AddOns2 setMyPackage={setMyPackage} myPackage={myPackage} item={item} key={item} />))}
 
                     </div>}
-                    {myPackage?.addOn2?.length > 0 && <button onClick={() => { setSelectedAddOn2(true) }} className='  right-0 h-10 w-full center  bg-white'>
+                    {myPackage?.addOn2?.length > 0 && <button onClick={() => { setSelectedAddOn2(true) }} className=' fixed  h-10 w-32 bottom-2 center  bg-white'>
                         <h1>Next</h1>
 
                     </button>}

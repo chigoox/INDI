@@ -34,7 +34,7 @@ const AddOns1 = ({ item, myPackage, setMyPackage }) => {
                         :
                         item == 'Facials' ?
                             'https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/beauty-magazine/articles-2/mens-facial/loreal-paris-article-why-facials-for-men-are-a-good-idea-d.jpg?rev=8914f9f6cd6947af94a71f01681aab8a'
-                            : 'https://img.freepik.com/free-photo/grunge-black-concrete-textured-background_53876-124541.jpg?w=2000&t=st=1692582067~exp=1692582667~hmac=94da7d7c50cbd5a5d6474346c5b493cef1c52cdc70de6bfab679ffb13de19e88'
+                            : 'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80'
                 } alt="" />
 
 
