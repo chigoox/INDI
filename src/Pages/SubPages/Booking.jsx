@@ -45,7 +45,7 @@ const reservations = [
 
 
 
-const Bookings = ({ setBooking }) => {
+const Bookings = ({ setBooking, myPackage }) => {
     const [bookingInfo, setBookingInfo] = useState({})
     // display div of availables times
     const [calendarTouched, setCalendarTouched] = useState(false)
@@ -142,14 +142,15 @@ const Bookings = ({ setBooking }) => {
 
     ]
     const bookNow = () => {
-        const STRIPE_CART = { quantity: 1, price: 'price_1Nenu0BiXRHCNCMjv2LpBOct' }
+        const total = (myPackage.addOn1.length * 100) + (myPackage.addOn2.length * 30) + (myPackage.addOn3.length * 200) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
+        console.log(total)
 
         fetch('/.netlify/functions/CheckOut', {
             method: 'POST',
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                cart: STRIPE_CART
+                price: total
             })
         }).then(res => {
             res.json().then(res => {
@@ -340,7 +341,7 @@ const Bookings = ({ setBooking }) => {
             }
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
-                <h1 className='text-center text-pink-700'>pay $50 depoit to comfirm booking</h1>
+                <h1 className='text-center text-pink-700'>pay depoit half to comfirm booking</h1>
                 <button onClick={bookNow} className='h-12 w-32 bg-pink-700'>Book Now</button>
             </div>}
 

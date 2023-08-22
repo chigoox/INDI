@@ -41,7 +41,7 @@ function Home() {
 
     return (
         <div className='center relative '>
-            {booking && <Bookings setBooking={setBooking} />}
+            {booking && <Bookings setBooking={setBooking} myPackage={myPackage} />}
             {hasAddOn1 && <div className={`absolute  z-20 top-12 left-0 ${selectedAddOn2 ? 'h-full' : 'h-0'} trans-slow overflow-hidden w-full bg-black`}>
                 <div className='h-[40rem]  md:w-1/2 m-auto center gap-2 flex-col'>
                     {addOn200.map(item => (<AddOns3 item={item} setMyPackage={setMyPackage} myPackage={myPackage} key={item} />))}

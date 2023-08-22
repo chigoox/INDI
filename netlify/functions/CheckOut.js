@@ -15,14 +15,25 @@ export const handler = async (req, res) => {
   console.log(req.body['cart'])
 
   const request = JSON.parse(req.body)
-  const {cart} = request
+  const {price} = request
   console.log(cart)
 
   const session = await stripe.checkout.sessions.create({
-    line_items: [cart],
+     line_items: [{
+      price_data: {
+      currency: 'usd',
+      unit_amount: price,
+      product_data: {
+        name: 'Car Repair',
+        description: 'Your massage deposit free',
+        images: ['https://plus.unsplash.com/premium_photo-1681873742740-9a0e9eaa4584?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'],
+      },
+    },
+      quantity: 1,
+    }],
     mode: 'payment',
-    success_url: cart.price == 'price_1Nenu0BiXRHCNCMjv2LpBOct' ? `https://voidappx.netlify.app?successBook=true` : `https://voidappx.netlify.app?success=true`,
-    cancel_url: cart.price == 'price_1Nenu0BiXRHCNCMjv2LpBOct' ? `https://voidappx.netlify.app?canceledBook=true` : `https://voidappx.netlify.app?canceled=true`,
+    success_url: `http://indimassage.netlify.app/?success=true`,
+    cancel_url: `http://indimassage.netlify.app/?canceled=true`,
   });
   return {
     statusCode: 200,
