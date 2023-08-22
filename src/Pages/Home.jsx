@@ -79,7 +79,7 @@ function Home() {
                 </div>
             </div>
             }
-            {myPackage.type && <img className='h-[95vh] w-[42.7%] absolute  top-0 right-0  opacity-10' src={'https://images.unsplash.com/photo-1549445069-d1125f7a129c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'} alt="" />}
+            {myPackage.type && <img className='h-screen w-[42.7%] absolute  top-0 right-0  opacity-20' src={'https://images.unsplash.com/photo-1549445069-d1125f7a129c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'} alt="" />}
 
         </div>
     )
