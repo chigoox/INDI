@@ -49,7 +49,6 @@ const Bookings = ({ setBooking, myPackage }) => {
     const [bookingInfo, setBookingInfo] = useState({})
     // display div of availables times
     const [calendarTouched, setCalendarTouched] = useState(false)
-    console.log(bookingInfo)
     // handle dates
     let today = startOfToday()
     let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"))
@@ -86,14 +85,14 @@ const Bookings = ({ setBooking, myPackage }) => {
         const StartOfToday = startOfDay(selectedDay)
         const endOfToday = endOfDay(selectedDay)
         // change your working hours here
-        const startHour = set(StartOfToday, { hours: 1 })
-        const endHour = set(endOfToday, { hours: 17, minutes: 45 })
+        const startHour = set(StartOfToday, { hours: 9 })
+        const endHour = set(endOfToday, { hours: 20, minutes: 0 })
         let hoursInDay = eachMinuteOfInterval(
             {
                 start: startHour,
                 end: endHour
             },
-            { step: bookingInfo.extraTime == 'No' ? 30 : 60 }
+            { step: bookingInfo.extraTime == 'No' ? 60 : 90 }
         )
 
         // filter the available hours
@@ -114,14 +113,14 @@ const Bookings = ({ setBooking, myPackage }) => {
             const StartOfToday = startOfDay(day)
             const endOfToday = endOfDay(day)
             // change your working hours here
-            const startHour = set(StartOfToday, { hours: 5 })
-            const endHour = set(endOfToday, { hours: 17, minutes: 45 })
+            const startHour = set(StartOfToday, { hours: 9 })
+            const endHour = set(endOfToday, { hours: 20, minutes: 0 })
             let hoursInDay = eachMinuteOfInterval(
                 {
                     start: startHour,
                     end: endHour
                 },
-                { step: 30 }
+                { step: bookingInfo.extraTime == 'No' ? 60 : 90 }
             )
             // filter the available hours
             let freeTimes = hoursInDay.filter(
@@ -142,7 +141,9 @@ const Bookings = ({ setBooking, myPackage }) => {
 
     ]
 
-    const total = (myPackage.addOn1.length * 100) + (myPackage.addOn2.length * 30) + (myPackage.addOn3.length * 200) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
+    const total = (myPackage.addOn1[0] != 'None' ? (myPackage.addOn1.length * 100) : 0) + (myPackage.addOn2[0] != 'None' ? (myPackage.addOn2.length * 30) : 0) + (myPackage.addOn3[0] != 'None' ? (myPackage.addOn3.length * 200) : 0) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
+    console.log(total)
+    console.log(myPackage.addOn3[0] == 'None')
     const bookNow = () => {
         console.log(total)
 
@@ -151,7 +152,7 @@ const Bookings = ({ setBooking, myPackage }) => {
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: total,
+                price: total / 2,
                 name: myPackage.type
             })
         }).then(res => {
@@ -344,6 +345,10 @@ const Bookings = ({ setBooking, myPackage }) => {
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
                 <h1 className='text-center text-pink-700'>depoit half to comfirm booking</h1>
+                <div className='center gap-1'>
+                    <h1 className='text-center text-pink-700 text-5xl'>{'$' + total}</h1>
+                    <h1>+ Tax</h1>
+                </div>
                 <button onClick={bookNow} className='h-12 w-32 bg-pink-700'>Book Now</button>
             </div>}
 
