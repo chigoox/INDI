@@ -65,15 +65,24 @@ function Home() {
 
                     </button>}
                 </div>
-                <div className={`w-full trans-slow   center flex-col overflow-hidden ${(selectedAddOn1 && hasAddOn1) ? 'h-[30rem] bottom-1 md:h-96 border-y' : 'h-0'}`}>
+                <div className={`w-full trans-slow   center flex-col overflow-hidden ${(selectedAddOn1 && hasAddOn1) ? 'h-[29rem] bottom-1 md:h-96 border-y' : 'h-0'}`}>
                     {(selectedAddOn1 && hasAddOn1) && <div className='grid md:grid-cols-3 grid-cols-1  h-full w-full  grid-rows-2 '>
                         {addOn30.map(item => (<AddOns2 setMyPackage={setMyPackage} myPackage={myPackage} item={item} key={item} />))}
 
                     </div>}
-                    {myPackage?.addOn2?.length > 0 && <button onClick={() => { setSelectedAddOn2(true) }} className=' absolute  h-10 w-32 -bottom-12 center  bg-white'>
-                        <h1>Next</h1>
+                    {myPackage?.addOn2?.length > 0 &&
+                        <div className='absolute -bottom-[6.2rem] md:-bottom-24 center flex-col md:flex-row gap-1  h-24 hover:bg-pink-700'>
+                            <button onClick={() => { setSelectedAddOn2(true) }} className=' flex-1  h-12 w-32  center  bg-white'>
+                                <h1>Add BDSM </h1>
 
-                    </button>}
+                            </button>
+                            <button onClick={() => { setMyPackage(old => ({ ...old, addOn3: ['None'] })); setBooking(true) }} className=' flex-1  h-12 w-32 center  bg-white'>
+                                <h1>Book Now</h1>
+
+                            </button>
+                        </div>
+
+                    }
 
 
                 </div>
