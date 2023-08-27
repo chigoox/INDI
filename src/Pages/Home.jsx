@@ -37,6 +37,10 @@ function Home() {
 
     }, [hasAddOn1])
 
+    const noBDSM = () => {
+        setMyPackage(old => ({ ...old, addOn3: ['None'] }))
+        setBooking(true)
+    }
 
 
     return (
@@ -72,12 +76,9 @@ function Home() {
                     </div>}
                     {myPackage?.addOn2?.length > 0 &&
                         <div className='absolute -bottom-[6.2rem] md:-bottom-24 center flex-col md:flex-row gap-1  h-24 hover:bg-pink-700'>
-                            <button onClick={() => { setSelectedAddOn2(true) }} className=' flex-1  h-12 w-32  center  bg-white'>
-                                <h1>Add BDSM </h1>
 
-                            </button>
-                            <button onClick={() => { setMyPackage(old => ({ ...old, addOn3: ['None'] })); setBooking(true) }} className=' flex-1  h-12 w-32 center  bg-white'>
-                                <h1>Book Now</h1>
+                            <button onClick={() => { myPackage.type == 'BDSM Massage' ? setSelectedAddOn2(true) : noBDSM() }} className='  h-12 w-32 center  bg-white'>
+                                {myPackage.type == 'BDSM Massage' ? <h1>Next</h1> : <h1>Book Now</h1>}
 
                             </button>
                         </div>
@@ -88,7 +89,7 @@ function Home() {
                 </div>
             </div>
             }
-            {myPackage.type && <img className='h-screen w-[32.7%] absolute  top-0 right-0  opacity-20' src={'https://images.unsplash.com/photo-1549445069-d1125f7a129c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'} alt="" />}
+            {myPackage.type && <img className='h-screen w-[40%] absolute  top-0 right-0  opacity-20' src={'https://images.unsplash.com/photo-1549445069-d1125f7a129c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'} alt="" />}
 
         </div>
     )

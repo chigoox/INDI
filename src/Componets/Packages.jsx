@@ -4,7 +4,7 @@ const Packages = ({ item, setMyPackage, myPackage }) => {
     const seletected = (myPackage.type?.includes(item))
 
     return (
-        <button onClick={() => { setMyPackage(old => ({ ...old, type: (myPackage.type == item) ? undefined : item })) }} className={`h-[95vh] top-12 ${myPackage.type ? 'w-1/3' : 'w-1/2'} ${seletected ? 'border-y-8  border-pink-700  text-2xl    md:text-3xl' : 'border-0 text-2xl md:text-3xl'} bg-red-900  relative group   overflow-hidden trans-slow`}>
+        <button onClick={() => { setMyPackage(old => ({ ...old, type: (myPackage.type == item) ? undefined : item })) }} className={`h-[95vh] top-12 ${myPackage.type ? 'w-[25%] text-sm md:text-xl' : 'w-1/2 text-2xl   md:text-3xl'} ${seletected ? 'border-y-8  border-pink-700  ' : 'border-0 text-2xl md:text-3xl'} bg-red-900  relative group   overflow-hidden trans-slow`}>
             <div className={`z-10 absolute top-[50%]   group-hover:bg-black w-full  ${seletected ? 'text-[#4d194d] bg-opacity-100 bg-white' : 'bg-black bg-opacity-75 text-pink-500'} group-hover:scale-[1.05]  group-hover:bg-opacity-100 trans`}>
                 <h1 className=' group-hover:text-pink-200 text-center p-2'>{item}</h1>
             </div>
