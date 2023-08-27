@@ -13,7 +13,7 @@ function Home() {
     const [selectedAddOn1, setSelectedAddOn1] = useState(false)
     const [selectedAddOn2, setSelectedAddOn2] = useState(false)
     const [booking, setBooking] = useState(false)
-    const Package = ['Standard Massage', 'sensual Massage']
+    const Package = ['Standard Massage', 'sensual Massage', 'BDSM Massage']
     const addOn30 = ['Hot Stones', 'Hot Wax', 'Shroom Tea', 'Smoking', 'None']
     const addOn100 = ['Double Trouble', 'Facials', 'None']
     const addOn200 = ['Ball Trampling', 'Golden Shower', 'Mummification', 'Impact Play', 'Breath Play', 'Restraints', 'Queening', 'Foot Worship(Mine of course)', 'None']
@@ -57,7 +57,7 @@ function Home() {
                 </button>
             </div>}
             {Package.map(item => (<Packages item={item} setMyPackage={setMyPackage} myPackage={myPackage} key={item} />))}
-            {myPackage.type && <div className='w-1/2 relative z-10'>
+            {myPackage.type && <div className='w-1/2  relative z-10'>
                 <div className='grid grid-cols-1 h-[16rem] md:h-full md:grid-cols-3 grid-flow-row gap-4 relative p-4'>
                     {addOn100.map(item => (<AddOns1 item={item} key={item} setSelectedAddOn1={setSelectedAddOn1} setMyPackage={setMyPackage} myPackage={myPackage} />))}
                     {(hasAddOn1 && !hasAddOn2) && <button onClick={() => { setSelectedAddOn1(true) }} className='absolute -top-10 right-0 h-10 w-full center  bg-white'>
@@ -88,7 +88,7 @@ function Home() {
                 </div>
             </div>
             }
-            {myPackage.type && <img className='h-screen w-[42.7%] absolute  top-0 right-0  opacity-20' src={'https://images.unsplash.com/photo-1549445069-d1125f7a129c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'} alt="" />}
+            {myPackage.type && <img className='h-screen w-[32.7%] absolute  top-0 right-0  opacity-20' src={'https://images.unsplash.com/photo-1549445069-d1125f7a129c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'} alt="" />}
 
         </div>
     )
