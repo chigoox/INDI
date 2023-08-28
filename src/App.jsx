@@ -1,10 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
-import { AiOutlineMenu, AiOutlineClose, AiFillFacebook } from "react-icons/ai";
 import './App.css'
 import Home from './Pages/Home';
-import LOGO from './assets/httpLOGO.png'
 import UserManager from './Componets/Header/UserManager';
-import { addToDatabase, fetchDocument, notify } from './MyCodes/ed5';
+import { addToDatabase, fetchDocument, notify, updateArrayDatabaseItem, updateDatabaseItem } from './MyCodes/ed5';
 import UserPages from './Pages/UserPages/UserPages';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -20,6 +18,7 @@ function App() {
   const [reservation, setReservation] = useState()
   const addReservationToDataBase = () => {
     addToDatabase('Users', loggedInUser?.uid, 'reservation', reservation[loggedInUser.uid])
+    updateArrayDatabaseItem('Admin', 'reservations', allRes, reservation[loggedInUser.uid])
   }
   useEffect(() => {
 
@@ -28,11 +27,20 @@ function App() {
       fetchDocument('Admin', 'onHold', setReservation)
       setTimeout(() => {
         if (reservation) addReservationToDataBase()
+        if (loggedInUser) {
+          updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
+          updateDatabaseItem('Users', loggedInUser.uid, willBook)
+        }
       }, 500);
+
 
     }
     const canceledBook = () => {
       notify("Booking Canceled")
+      if (loggedInUser) {
+        updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
+        updateDatabaseItem('Users', loggedInUser.uid, willBook)
+      }
 
     }
     // Check to see if this is a redirect back from Checkout
