@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useMemo, useState } from "react"
 import { cn, dayNames } from "../../../lib/utils"
 import {
@@ -31,22 +31,22 @@ import AvailableHours from "../../Componets/Bookings/AvailableHours"
 import TimesBar from '../../Componets/Bookings/TimesBar'
 import ReactDropdown from 'react-dropdown'
 import { AiFillBackward, AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowUp } from 'react-icons/ai'
+import { addToDatabase, fetchDocument } from '../../MyCodes/ed5'
+import { UserContext } from '../../App'
 
 
-const reservations = [
-    addHours(startOfToday(), 5).toString(),
-    addHours(startOfToday(), 6).toString(),
-    addHours(startOfToday(), 7).toString(),
-    addHours(startOfToday(), 8).toString(),
-    addHours(startOfToday(), 9).toString(),
-    addHours(startOfToday(), 10).toString(),
-    addDays(new Date(addHours(startOfToday(), 4)), 3).toString()
-]
+
+
 
 
 
 const Bookings = ({ setBooking, myPackage }) => {
+    const [adminDATA, setAdminDATA] = useState({})
+    const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
+
+
     const [bookingInfo, setBookingInfo] = useState({})
+    const [reload, setReload] = useState(false)
     // display div of availables times
     const [calendarTouched, setCalendarTouched] = useState(false)
     // handle dates
@@ -142,8 +142,12 @@ const Bookings = ({ setBooking, myPackage }) => {
     ]
 
     const total = (myPackage.addOn1[0] != 'None' ? (myPackage.addOn1.length * 100) : 0) + (myPackage.addOn2[0] != 'None' ? (myPackage.addOn2.length * 30) : 0) + (myPackage.addOn3[0] != 'None' ? (myPackage.addOn3.length * 200) : 0) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
-    console.log(total)
-    console.log(myPackage.addOn3[0] == 'None')
+    useEffect(() => {
+        fetchDocument('Admin', 'reservations', setAdminDATA)
+
+    }, [reload, calendarTouched, selectedDay])
+
+
     const bookNow = () => {
         console.log(total)
 
@@ -337,7 +341,7 @@ const Bookings = ({ setBooking, myPackage }) => {
                             </span>
                         </span>
 
-                        <AvailableHours freeTimes={freeTimes} setBookingInfo={setBookingInfo} />
+                        <AvailableHours freeTimes={freeTimes} setBookingInfo={setBookingInfo} reload={reload} setReload={setReload} />
                     </div>
                 </div>
 

@@ -1,17 +1,39 @@
-import { format, isSameMinute } from "date-fns"
+import { addHours, format, isSameMinute, startOfDay, startOfToday } from "date-fns"
 import { CheckCircle2 } from "lucide-react"
-import React, { memo, useState } from "react"
+import React, { memo, useContext, useState } from "react"
 import { cn } from "../../../lib/utils"
+import { addToDatabase, updateArrayDatabaseItem } from "../../MyCodes/ed5"
+import { UserContext } from "../../App"
 
 // eslint-disable-next-line react/display-name
-const AvailableHours = memo(({ freeTimes, setBookingInfo }) => {
+const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) => {
     const [selectedTime, setSelectedTime] = useState()
+    const user = useContext(UserContext)[0]
+    console.log(startOfDay(selectedTime))
 
     const bookTime = () => {
         const fullDate = format(selectedTime, "MM-dd-yy hh:mm aaaaa'm'")
         const date = format(selectedTime, "MM-dd-yy")
-        const time = format(selectedTime, "HH:mm")
-        setBookingInfo(old => ({ ...old, apointment: fullDate, date: date, time: time }))
+        const time12 = format(selectedTime, "HH:mm")
+        const time24 = format(selectedTime, "hh:mm")
+
+        const conTime = (time12) => {
+            return (parseFloat(`${time12.substring(0, 2)}.${time12.substring(3, 4) == '3' ? '5' : '0'}`))
+        }
+
+
+        setBookingInfo(old => {
+            updateArrayDatabaseItem('Admin', 'reservations', 'allRes',)
+            const data = { ...old, apointment: fullDate, date: date, time12: time12, time24: time24, dateMain: addHours(startOfDay(selectedTime), conTime(time12)).toString() }
+            addToDatabase('Users', user.uid, 'willBook', data)
+            addToDatabase('Admin', 'onHold', user.uid, addHours(startOfDay(selectedTime), conTime(time12)).toString())
+            return ({ ...old, apointment: fullDate, date: date, time12: time12 })
+        })
+
+        setTimeout(() => {
+            setReload(!reload)
+        }, 300);
+
     }
 
     return (
@@ -33,7 +55,7 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo }) => {
                                 isSameMinute(selectedTime, hour) &&
                                 "bg-purple-300 text-gray-800"
                             )}
-                            onClick={() => setSelectedTime(hour)}
+                            onClick={() => { setSelectedTime(hour); setReload(!reload) }}
                         >
                             <CheckCircle2
                                 color="purple"

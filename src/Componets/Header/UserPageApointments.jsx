@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+
 
 function UserPageApointments({ setOpenUserPage }) {
+    const [loggedInUserDATA, setLoggedInUserDATA] = useState({})
+    const [adminDATA, setAdminDATA] = useState({})
+    console.log(adminDATA)
+
+
+
+
+
     return (
         <div className='h-full w-full bg-black top-12 relative'>
             <div className='md:w-1/2 h-full m-auto'>
