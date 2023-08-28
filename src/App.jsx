@@ -22,16 +22,13 @@ function App() {
   }
   useEffect(() => {
 
-    const successBook = () => {
-      fetchDocument('Admin', 'onHold', setReservation)
-      setTimeout(() => {
-        addReservationToDataBase()
+    const successBook = async () => {
+      await fetchDocument('Admin', 'onHold', setReservation)
+      addReservationToDataBase()
 
-        updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
-        updateDatabaseItem('Users', loggedInUser.uid, 'willBook')
-        notify("Appointment Booked")
-
-      }, 2000);
+      updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
+      updateDatabaseItem('Users', loggedInUser.uid, 'willBook')
+      notify("Appointment Booked")
 
 
     }
