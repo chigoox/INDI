@@ -23,7 +23,6 @@ function Home() {
     const hasAddOn2 = myPackage?.addOn2?.length > 0
 
 
-    console.log(myPackage)
 
     useEffect(() => {
         if (!hasAddOn1) setSelectedAddOn1(hasAddOn2 && hasAddOn1)
@@ -51,11 +50,11 @@ function Home() {
                     {addOn200.map(item => (<AddOns3 item={item} setMyPackage={setMyPackage} myPackage={myPackage} key={item} />))}
 
                 </div>
-                {myPackage?.addOn3?.length > 0 && <button onClick={() => { setBooking(true) }} className='  right-0 h-10 w-full center  bg-white'>
+                {myPackage?.addOn3?.length > 0 && <button onClick={() => { setBooking(true) }} className='hover:bg-pink-700  right-0 h-10 w-full center  bg-white'>
                     <h1>Book Massage</h1>
 
                 </button>}
-                <button onClick={() => { setSelectedAddOn2(false) }} className='mt-2  right-0 h-10 w-full center  bg-white'>
+                <button onClick={() => { setSelectedAddOn2(false) }} className='mt-2  right-0 h-10 w-full center hover:bg-pink-700  bg-white'>
                     <h1>Back</h1>
 
                 </button>
@@ -64,7 +63,7 @@ function Home() {
             {myPackage.type && <div className='w-1/2  relative z-10'>
                 <div className='grid grid-cols-1 h-[16rem] md:h-full md:grid-cols-3 grid-flow-row gap-4 relative p-4'>
                     {addOn100.map(item => (<AddOns1 item={item} key={item} setSelectedAddOn1={setSelectedAddOn1} setMyPackage={setMyPackage} myPackage={myPackage} />))}
-                    {(hasAddOn1 && !hasAddOn2) && <button onClick={() => { setSelectedAddOn1(true) }} className='absolute -top-10 right-0 h-10 w-full center  bg-white'>
+                    {(hasAddOn1 && !hasAddOn2) && <button onClick={() => { setSelectedAddOn1(true) }} className='absolute -top-10 right-0 h-10 w-full center  bg-white hover:bg-pink-700 trans'>
                         <h1>Next</h1>
 
                     </button>}
@@ -75,9 +74,9 @@ function Home() {
 
                     </div>}
                     {myPackage?.addOn2?.length > 0 &&
-                        <div className='absolute -bottom-[6.2rem] md:-bottom-24 center flex-col md:flex-row gap-1  h-24 hover:bg-pink-700'>
+                        <div className='absolute -bottom-[6.2rem] md:-bottom-24 center flex-col md:flex-row gap-1  h-24 '>
 
-                            <button onClick={() => { myPackage.type == 'BDSM Massage' ? setSelectedAddOn2(true) : noBDSM() }} className='  h-12 w-32 center  bg-white'>
+                            <button onClick={() => { myPackage.type == 'BDSM Massage' ? setSelectedAddOn2(true) : noBDSM() }} className='hover:bg-pink-700 trans  h-12 w-32 center  bg-white'>
                                 {myPackage.type == 'BDSM Massage' ? <h1>Next</h1> : <h1>Book Now</h1>}
 
                             </button>

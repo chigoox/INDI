@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { BsApple, BsFacebook, BsGoogle, BsKeyFill, BsMailbox, BsMailbox2, BsPersonFill, BsPhone } from "react-icons/bs";
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, sendEmailVerification, signOut } from "firebase/auth";
-import { AiFillCloseCircle, AiFillCloseSquare } from 'react-icons/ai';
+import { AiFillCalendar, AiFillCloseCircle, AiFillCloseSquare } from 'react-icons/ai';
 import { Mail, MailIcon } from 'lucide-react';
 import { notify } from '../../MyCodes/ed5';
 
-const UserManager = ({ loggedInUser, setLoggedInUser }) => {
+const UserManager = ({ loggedInUser, setLoggedInUser, setOpenUserPage }) => {
 
 
     const [showAccountPanel, setShowAccountPanel] = useState(false)
@@ -95,7 +95,7 @@ const UserManager = ({ loggedInUser, setLoggedInUser }) => {
             )
         }
         const SignUpWithEmail = () => {
-            if (passwordPass == true) {
+            if (passwordPass()) {
                 createUserWithEmailAndPassword(auth, registerInfo.email, registerInfo.password)
                     .then((userCredential) => {
                         notify('Signed in!')
@@ -147,6 +147,20 @@ const UserManager = ({ loggedInUser, setLoggedInUser }) => {
         )
     }
 
+    const UserMenuIcons = ['Apointments']
+
+    const MenuIcon = ({ item, setOpenUserPage }) => {
+        const openPage = () => {
+            setOpenUserPage({ [item]: true })
+        }
+        return (
+            <button onClick={openPage} className='h-12 w-12  center m-auto'>
+                <AiFillCalendar size={48} />
+            </button>
+        )
+
+    }
+
     const UserMenu = ({ loggedInUser, setLoggedInUser }) => {
 
         const signOutButton = () => {
@@ -158,8 +172,14 @@ const UserManager = ({ loggedInUser, setLoggedInUser }) => {
             });
         }
         return (
-            <div className={`w-full ${loggedInUser?.uid ? ' h-[26rem] opacity-100' : 'h-0'} absolute top-[2.5rem] p-2 left-0 bg-black-800 `}>
-                <h1>logged in, will add later</h1>
+            <div className={`w-full ${loggedInUser?.uid ? ' h-[26rem] opacity-100' : 'h-0'} absolute top-[2.5rem] p-2 left-0 bg-black-800 z-[999] shadow-xl  shadow-black`}>
+                <div className='grid grid-cols-3 grid-flow-row h-[20rem] border m-2 p-2 '>
+                    {UserMenuIcons.map(item => {
+                        return (
+                            <MenuIcon key={item} item={item} setOpenUserPage={setOpenUserPage} />
+                        )
+                    })}
+                </div>
                 <button onClick={signOutButton} className='bg-red-500 rounded p-2 text-white'>Logout</button>
             </div>
         )
