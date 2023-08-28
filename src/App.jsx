@@ -32,7 +32,7 @@ function App() {
           updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
           updateDatabaseItem('Users', loggedInUser.uid, willBook)
         }
-      }, 100);
+      }, 1000);
 
 
     }
