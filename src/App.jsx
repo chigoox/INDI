@@ -23,6 +23,7 @@ function App() {
   useEffect(() => {
 
     const successBook = async () => {
+      console.log('first')
       await fetchDocument('Admin', 'onHold', setReservation)
       addReservationToDataBase()
 
