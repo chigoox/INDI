@@ -31,7 +31,7 @@ function App() {
         updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
         updateDatabaseItem('Users', loggedInUser.uid, 'willBook')
 
-      }, 500);
+      }, 2000);
 
 
     }
