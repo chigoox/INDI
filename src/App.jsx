@@ -28,10 +28,11 @@ function App() {
       setTimeout(() => {
         if (reservation) addReservationToDataBase()
         if (loggedInUser) {
+          console.log('first')
           updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
           updateDatabaseItem('Users', loggedInUser.uid, willBook)
         }
-      }, 500);
+      }, 100);
 
 
     }
