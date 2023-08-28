@@ -26,12 +26,11 @@ function App() {
       notify("Appointment Booked")
       fetchDocument('Admin', 'onHold', setReservation)
       setTimeout(() => {
-        if (reservation) addReservationToDataBase()
-        if (loggedInUser) {
-          console.log('first')
-          updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
-          updateDatabaseItem('Users', loggedInUser.uid, willBook)
-        }
+        addReservationToDataBase()
+
+        updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
+        updateDatabaseItem('Users', loggedInUser.uid, willBook)
+
       }, 1000);
 
 
