@@ -25,13 +25,10 @@ function App() {
     const successBook = () => {
       notify("Appointment Booked")
       fetchDocument('Admin', 'onHold', setReservation)
-      setTimeout(() => {
-        addReservationToDataBase()
+      addReservationToDataBase()
 
-        updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
-        updateDatabaseItem('Users', loggedInUser.uid, willBook)
-
-      }, 1000);
+      updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
+      updateDatabaseItem('Users', loggedInUser.uid, willBook)
 
 
     }
