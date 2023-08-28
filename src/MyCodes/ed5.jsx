@@ -89,7 +89,7 @@ export function disableScroll(enable = true, name = "scroll-able") {
 
 
 async function fetchDocument(collection, document, setterfunction) {
-    const docRef = doc(DATABASE, collection, document);
+    const docRef = doc(DATABASE, collection, document ? document : null);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
         setterfunction(docSnap.data());
