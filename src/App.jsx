@@ -30,7 +30,7 @@ function App() {
         if (loggedInUser) {
 
           updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
-          updateDatabaseItem('Users', loggedInUser.uid, willBook)
+          updateDatabaseItem('Users', loggedInUser.uid, 'willBook')
         }
       }, 500);
 
