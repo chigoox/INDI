@@ -29,8 +29,8 @@ export const handler = async (req, res) => {
       quantity: 1,
     }],
     mode: 'payment',
-    success_url: `http://indimassage.netlify.app/?success=true`,
-    cancel_url: `http://indimassage.netlify.app/?canceled=true`,
+    success_url: `http://indimassage.netlify.app/?successBook=true`,
+    cancel_url: `http://indimassage.netlify.app/?canceledBook=true`,
   });
   return {
     statusCode: 200,
