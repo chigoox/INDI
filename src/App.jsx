@@ -23,13 +23,13 @@ function App() {
   useEffect(() => {
 
     const successBook = () => {
-      notify("Appointment Booked")
       fetchDocument('Admin', 'onHold', setReservation)
       setTimeout(() => {
         addReservationToDataBase()
 
         updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
         updateDatabaseItem('Users', loggedInUser.uid, 'willBook')
+        notify("Appointment Booked")
 
       }, 2000);
 
