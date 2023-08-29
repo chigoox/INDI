@@ -7,14 +7,14 @@ import { UserContext } from '../../App'
 function UserPageApointments({ setOpenUserPage }) {
     const [loggedInUserDATA, setLoggedInUserDATA] = useState({})
     const [adminDATA, setAdminDATA] = useState({})
-    const user = useContext(UserContext)[0]
-    const uid = user.uid
+    // const user = useContext(UserContext)[0]
+    // const uid = user.uid
+
     useEffect(() => {
-        fetchDocument('Users', uid, setLoggedInUserDATA)
+        // fetchDocument('Users', uid, setLoggedInUserDATA)
     }, [])
 
 
-    console.log(loggedInUserDATA)
 
 
 
