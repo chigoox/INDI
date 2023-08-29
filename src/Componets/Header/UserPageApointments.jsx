@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { fetchDocument } from '../../MyCodes/ed5'
+import { UserContext } from '../../App'
 
 
 
 function UserPageApointments({ setOpenUserPage }) {
     const [loggedInUserDATA, setLoggedInUserDATA] = useState({})
     const [adminDATA, setAdminDATA] = useState({})
-    console.log(adminDATA)
+    const user = useContext(UserContext)[0]
+    const uid = user.uid
+    useEffect(() => {
+        fetchDocument('Users', uid, setLoggedInUserDATA)
+    }, [])
 
+
+    console.log(loggedInUserDATA)
 
 
 

@@ -13,32 +13,46 @@ const auth = getAuth();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({})
-
+  const uid = loggedInUser?.uid
   const [openUserPage, setOpenUserPage] = useState()
-  const [reservation, setReservation] = useState()
-  const addReservationToDataBase = () => {
-    addToDatabase('Users', loggedInUser?.uid, 'reservation', reservation[loggedInUser.uid])
-    updateArrayDatabaseItem('Admin', 'reservations', allRes, reservation[loggedInUser.uid])
+  const [adminReservation, setAdminadminReservation] = useState()
+  const [userReservation, setUserReservation] = useState()
+
+
+  const addadminReservationToDataBase = async () => {
+
+    await addToDatabase('Users', uid, 'reservation', adminReservation[uid])
+    await updateArrayDatabaseItem('Admin', 'reservations', 'allRes', adminReservation[uid])
+  }
+
+
+  if (adminReservation) {
+    addadminReservationToDataBase()
+    setAdminadminReservation()
+  }
+
+  const successBook = async () => {
+
+    await fetchDocument('Admin', 'onHold', setAdminadminReservation)
+
+    updateDatabaseItem('Admin', 'onHold', uid)
+    updateDatabaseItem('Users', uid, 'willBook')
+
+  }
+  const canceledBook = () => {
+    if (loggedInUser) {
+      updateDatabaseItem('Admin', 'onHold', uid)
+      updateDatabaseItem('Users', uid, 'willBook')
+    }
+
+  }
+  if (!userReservation) {
+    if (uid) fetchDocument('Users', uid, setUserReservation)
   }
   useEffect(() => {
 
-    const successBook = async () => {
-      console.log('first')
-      await fetchDocument('Admin', 'onHold', setReservation)
-      addReservationToDataBase()
-
-      updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
-      updateDatabaseItem('Users', loggedInUser.uid, 'willBook')
-      notify("Appointment Booked")
-
-
-    }
-    const canceledBook = () => {
-      notify("Booking Canceled")
-      if (loggedInUser) {
-        updateDatabaseItem('Admin', 'onHold', loggedInUser.uid)
-        updateDatabaseItem('Users', loggedInUser.uid, willBook)
-      }
+    if (userReservation) {
+      updateArrayDatabaseItem('Users', uid, 'pastReservation', userReservation.reservation)
 
     }
     // Check to see if this is a redirect back from Checkout
@@ -46,20 +60,35 @@ function App() {
 
     if (query.get("successBook")) successBook();
     if (query.get("canceledBook")) canceledBook();
+
+
+  }, [loggedInUser, userReservation]);
+
+  useEffect(() => {
+
+
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("successBook")) notify("Appointment booked");
+    if (query.get("canceledBook")) notify("Booking Canceled");
     if (query.get("success")) notify("Order placed");
     if (query.get("canceled")) notify("Order Canceled");
 
-
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setLoggedInUser(user)
-      } else {
-
-      }
-    });
-
   }, []);
+
+
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setLoggedInUser(user)
+
+    } else {
+
+    }
+  });
+
+
+
   return (
     <div className="App w-full h-screen overflow-hidden bg-[#4d194d]  scroll-able relative">
       <div className='h-12 bg-black center gap-2 w-full z-[999] fixed'>

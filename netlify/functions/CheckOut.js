@@ -36,6 +36,7 @@ export const handler = async (req, res) => {
     statusCode: 200,
     body: JSON.stringify({
       url: session.url,
+      session:session,
     }),
   }
 }

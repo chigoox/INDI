@@ -23,10 +23,9 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
 
 
         setBookingInfo(old => {
-            updateArrayDatabaseItem('Admin', 'reservations', 'allRes',)
             const data = { ...old, apointment: fullDate, date: date, time12: time12, time24: time24, dateMain: addHours(startOfDay(selectedTime), conTime(time12)).toString() }
-            addToDatabase('Users', user.uid, 'willBook', data)
-            addToDatabase('Admin', 'onHold', user.uid, addHours(startOfDay(selectedTime), conTime(time12)).toString())
+            if (user.uid) addToDatabase('Users', user.uid, 'willBook', data)
+            if (user.uid) addToDatabase('Admin', 'onHold', user.uid, addHours(startOfDay(selectedTime), conTime(time12)).toString())
             return ({ ...old, apointment: fullDate, date: date, time12: time12 })
         })
 
