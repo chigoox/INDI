@@ -5,7 +5,7 @@ import { AiFillCalendar, AiFillCloseCircle, AiFillCloseSquare } from 'react-icon
 import { Mail, MailIcon } from 'lucide-react';
 import { notify } from '../../MyCodes/ed5';
 
-const UserManager = ({ loggedInUser, setLoggedInUser, setOpenUserPage }) => {
+const UserManager = ({ loggedInUser, setLoggedInUser, setOpenUserPage, openUserPage }) => {
 
 
     const [showAccountPanel, setShowAccountPanel] = useState(false)
@@ -150,8 +150,10 @@ const UserManager = ({ loggedInUser, setLoggedInUser, setOpenUserPage }) => {
     const UserMenuIcons = ['Apointments']
 
     const MenuIcon = ({ item, setOpenUserPage }) => {
+        console.log(openUserPage)
         const openPage = () => {
             setOpenUserPage({ [item]: true })
+
         }
         return (
             <button onClick={openPage} className='h-12 w-12  center m-auto'>

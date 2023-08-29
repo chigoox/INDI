@@ -20,7 +20,6 @@ function App() {
 
 
   const addadminReservationToDataBase = async () => {
-
     await addToDatabase('Users', uid, 'reservation', adminReservation[uid])
     await updateArrayDatabaseItem('Admin', 'reservations', 'allRes', adminReservation[uid])
   }
@@ -47,9 +46,11 @@ function App() {
 
   }
   if (!userReservation) {
+    console.log('here')
     if (uid) fetchDocument('Users', uid, setUserReservation)
   }
   useEffect(() => {
+    console.log('her2e')
 
     if (userReservation) {
       updateArrayDatabaseItem('Users', uid, 'pastReservation', userReservation.reservation)
@@ -65,7 +66,14 @@ function App() {
   }, [loggedInUser, userReservation]);
 
   useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedInUser(user)
 
+      } else {
+
+      }
+    });
 
     const query = new URLSearchParams(window.location.search);
 
@@ -78,14 +86,7 @@ function App() {
 
 
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setLoggedInUser(user)
 
-    } else {
-
-    }
-  });
 
 
 
@@ -96,7 +97,7 @@ function App() {
           <h1 className='text-white'>iNDY</h1>
         </a>
 
-        <UserManager loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} setOpenUserPage={setOpenUserPage} />
+        <UserManager loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} openUserPage={openUserPage} setOpenUserPage={setOpenUserPage} />
       </div>
       {/* PAGES */}
       <UserContext.Provider value={[loggedInUser]}>
