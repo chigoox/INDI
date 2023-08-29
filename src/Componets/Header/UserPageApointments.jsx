@@ -26,13 +26,13 @@ function UserPageApointments({ setOpenUserPage }) {
                 <br />
                 <h1 className='text-[#8b288b] text-center text-sm'>current </h1>
                 <div className='h-12 bg-gray-700 center'>
-                    <h1 className='text-white text-lg'>{loggedInUserDATA.reservation}</h1>
+                    <h1 className='text-white text-lg fadeInZoom'>{loggedInUserDATA.reservation}</h1>
                 </div>
                 <h1 className='text-gray-300 text-center text-sm mt-12'>Past </h1>
                 <div className='bg-gray-700 h-96 overflow-y-scroll hidescroll center flex-col rounded'>
                     {loggedInUserDATA?.pastReservation?.map(item => {
                         return (
-                            <div className='my-auto bg-purple-800 rounded p-2'>
+                            <div className='my-auto bg-purple-800 fadeInBottom rounded text-white p-2'>
                                 {item}
                             </div>
                         )

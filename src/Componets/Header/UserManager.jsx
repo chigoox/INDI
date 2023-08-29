@@ -149,10 +149,11 @@ const UserManager = ({ loggedInUser, setLoggedInUser, setOpenUserPage, openUserP
 
     const UserMenuIcons = ['Apointments']
 
-    const MenuIcon = ({ item, setOpenUserPage }) => {
+    const MenuIcon = ({ item, setOpenUserPage, toggleAccountPanel }) => {
         console.log(openUserPage)
         const openPage = () => {
             setOpenUserPage({ [item]: true })
+            toggleAccountPanel()
 
         }
         return (
@@ -178,7 +179,7 @@ const UserManager = ({ loggedInUser, setLoggedInUser, setOpenUserPage, openUserP
                 <div className='grid grid-cols-3 grid-flow-row h-[20rem] border m-2 p-2 '>
                     {UserMenuIcons.map(item => {
                         return (
-                            <MenuIcon key={item} item={item} setOpenUserPage={setOpenUserPage} />
+                            <MenuIcon key={item} item={item} setOpenUserPage={setOpenUserPage} toggleAccountPanel={toggleAccountPanel} />
                         )
                     })}
                 </div>
