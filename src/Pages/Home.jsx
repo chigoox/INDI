@@ -13,7 +13,7 @@ function Home() {
     const [selectedAddOn1, setSelectedAddOn1] = useState(false)
     const [selectedAddOn2, setSelectedAddOn2] = useState(false)
     const [booking, setBooking] = useState(false)
-    const Package = ['Standard Massage', 'sensual Massage', 'BDSM Massage']
+    const Package = ['Standard Massage', 'sensual Massage']// 'BDSM Massage']
     const addOn30 = ['Hot Stones', 'Hot Wax', 'Shroom Tea', 'Smoking', 'None']
     const addOn100 = ['Double Trouble', 'Facials', 'None']
     const addOn200 = ['Ball Trampling', 'Golden Shower', 'Mummification', 'Impact Play', 'Breath Play', 'Restraints', 'Queening', 'Foot Worship(Mine of course)', 'None']
