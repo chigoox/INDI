@@ -28,8 +28,6 @@ function AddOns3({ item, myPackage, setMyPackage }) {
                 src={
                     item == 'Ball Trampling' ?
                         'https://video-images.vice.com/test-uploads/articles/5e7e4d6d1511e6009c56768f/lede/1585335668717-3_27_2020_COCK_TRAMPLING_AND_BALL_BUSTING_CV.jpeg?crop=1xw:1xh;center,center&resize=1800:*'
-                        : item == 'Golden Shower' ?
-                            'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1440,w_2561,x_0,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1491846656/articles/2017/01/11/wet-and-wild-the-history-of-golden-showers/170111-crocker-golden-showers-tease_vnv1no'
                             : item == 'Mummification' ?
                                 'https://images.unsplash.com/photo-1649365245035-1f29626ebfe0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80'
                                 : item == 'Impact Play' ?
