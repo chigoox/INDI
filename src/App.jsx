@@ -5,6 +5,9 @@ import UserManager from './Componets/Header/UserManager';
 import { addToDatabase, fetchDocument, notify, updateArrayDatabaseItem, updateDatabaseItem } from './MyCodes/ed5';
 import UserPages from './Pages/UserPages/UserPages';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Home2 from './Pages/Page2';
+import Page3 from './Pages/Page3';
+import Bookings from './Pages/SubPages/Booking';
 
 
 
@@ -91,18 +94,15 @@ function App() {
 
 
   return (
-    <div className="App w-full h-screen overflow-hidden bg-[#4d194d]  scroll-able relative">
-      <div className='h-12 bg-black center gap-2 w-full z-[999] fixed'>
-        <a className='center gap-1 relative right-28 md:right-0' href="./">
-          <h1 className='text-white'>iNDY</h1>
-        </a>
+    <div className="App w-full h-screen overflow-x-hidden    scroll-able relative">
 
-        <UserManager loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} openUserPage={openUserPage} setOpenUserPage={setOpenUserPage} />
-      </div>
       {/* PAGES */}
       <UserContext.Provider value={[loggedInUser]}>
-        <UserPages openUserPage={openUserPage} setOpenUserPage={setOpenUserPage} />
+        {/* <UserPages openUserPage={openUserPage} setOpenUserPage={setOpenUserPage} /> */}
         <Home />
+        <Home2 />
+        <Page3 />
+        <Bookings />
       </UserContext.Provider>
       {/* Footer */}
       <div className='bg-black bottom-0 w-full '>

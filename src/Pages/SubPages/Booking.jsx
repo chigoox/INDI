@@ -141,7 +141,7 @@ const Bookings = ({ setBooking, myPackage }) => {
 
     ]
 
-    const total = (myPackage.addOn1[0] != 'None' ? (myPackage.addOn1.length * 100) : 0) + (myPackage.addOn2[0] != 'None' ? (myPackage.addOn2.length * 30) : 0) + (myPackage.addOn3[0] != 'None' ? (myPackage.addOn3.length * 200) : 0) + (bookingInfo.extraTime == 'Yes' ? 60 : 0) + (myPackage.type == 'sensual Massage' ? 350 : 150)
+    const total = 150
     useEffect(() => {
         fetchDocument('Admin', 'reservations', setAdminDATA)
 
@@ -168,36 +168,15 @@ const Bookings = ({ setBooking, myPackage }) => {
         })
     }
     return (
-        <div className='z-30 bg-black absolute top-12  m-auto w-full text-white h-full hidescroll overflow-scroll'>
+        <div className='z-30 bg-black   m-auto w-full text-white h-full hidescroll overflow-scroll'>
 
 
 
-            <button onClick={() => { setBooking(false) }} className='w-8 h-8 rounded-full ml-2'><AiOutlineArrowLeft size={32} color='pink' /></button>
+            <button onClick={() => { setBooking(false) }} className='w-8 h-8 rounded-full mt-8 ml-2'><AiOutlineArrowLeft size={32} color='pink' /></button>
+
+
             {
-                <div className='center flex-col mb-20'>
-                    <h1 className='text-5xl text-center mb-6 '>Bookings</h1>
-                    <h1>Add Time?</h1>
-                    <ReactDropdown
-                        className='w-96 bg-blue-800 h-12 text-white cursor-pointer '
-                        controlClassName='bg-pink-700 p-2 h-12 w-full'
-                        arrowClassName=''
-                        menuClassName=' h-fit w-full center flex-col gap-4 overflow-hidden bg-black-800'
-                        arrowClosed={<AiOutlineArrowDown size={24} />}
-                        arrowOpen={<AiOutlineArrowUp size={24} />}
-                        options={bookingOptions}
-                        onChange={(e) => { setBookingInfo(old => ({ ...old, extraTime: e.value })) }}
-                        value={''}
-                        placeholder="Add an Extra 30 Mins"
-                        placeholderClassName='text-black text-3xl text-center' />
-
-
-                </div>}
-            {bookingInfo.extraTime &&
-                <div>
-                    <h1 className='text-center'>When would you like to meet?</h1>
-                </div>}
-            {
-                <div className={`${bookingInfo.extraTime ? 'opacity-100' : 'opacity-0 z-0'} trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    bg-black mb-10 md:mb-24`}>
+                <div className={`mt-10  trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    bg-black mb-10 md:mb-24`}>
 
 
                     {/* calendar implementation */}
