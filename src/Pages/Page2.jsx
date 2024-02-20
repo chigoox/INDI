@@ -42,7 +42,7 @@ const Item = ({ index }) => {
 function Page2() {
 
     return (
-        <div className='h-screen w-screen  border-2 border-red-600 bg-white'>
+        <div className='h-screen w-screen  bg-white'>
 
 
             <div className='flex flex-col item-centers justify-center gap-4 h-auto relative top-2 '>
