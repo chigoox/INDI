@@ -94,7 +94,7 @@ function Home() {
             </div>
 
 
-            <video loop autoPlay playsInline muted className='top-0 h-screen w-full object-cover relative' src="public/Videos/intro.mp4"></video>
+            <video type='video/mp4' loop autoPlay playsInline muted className='top-0 h-screen w-full object-cover relative' src="public/Videos/intro.mp4"></video>
 
 
 
