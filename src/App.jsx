@@ -96,7 +96,7 @@ function App() {
   })
 
 
-
+  console.log(page)
 
   return (
     <div className="App w-full h-screen overflow-x-hidden    scroll-able relative">

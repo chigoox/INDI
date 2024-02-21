@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 
 
-const Item = ({ index, service }) => {
+const Item = ({ index, service, setBookingInfo, setPage }) => {
     const [currentImage, setCurrentImage] = useState(service.imgs[0])
     return (
         <div key={index} className='h-[27rem] w-72 border-purple-200 border m-auto  rounded-lg col-span-1 overflow-hidden '>
@@ -27,7 +27,7 @@ const Item = ({ index, service }) => {
             <div className='h-auto p-2 w-full  center-col'>
                 <h1 className='text-2xl font-bold file: text-center'>{service.name}</h1>
                 <h1 className='text-xl  file: text-center'>${service.price}/hr</h1>
-                <button className='p-2 bg-purple-700 h-12 w-3/4 rounded'>Book Now</button>
+                <button onClick={() => { setBookingInfo(service); setPage(2) }} className='p-2 bg-purple-700 h-12 w-3/4 rounded'>Book Now</button>
 
 
             </div>
@@ -37,7 +37,7 @@ const Item = ({ index, service }) => {
 
 
 
-function Page2({ setBookingInfo }) {
+function Page2({ setBookingInfo, setPage }) {
     const Services = [
         {
             name: 'Aroma Therapy Massage',
@@ -106,7 +106,7 @@ function Page2({ setBookingInfo }) {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 lg:grid-cols-3   xl:w-3/4 hidescroll m-auto top-8 mb-20 border-t relative p-2 overflow-hidden overflow-y-scroll h-[70%] '>
                 {
-                    Services.map((service, index) => (<Item index={index} service={service} />))
+                    Services.map((service, index) => (<Item index={index} service={service} setBookingInfo={setBookingInfo} setPage={setPage} />))
                 }
 
 

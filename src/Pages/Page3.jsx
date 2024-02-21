@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 
 
 
-function Page3() {
+function Page3({ setBookingInfo, setPages }) {
     const addOns = ['Massage Gun', 'Hot Stones', 'Electro Therapy', 'Face Mask', 'Scalp Massage', 'Extra Time(15mins)']
 
     return (
