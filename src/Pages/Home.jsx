@@ -8,38 +8,11 @@ import AddOns3 from '../Componets/AddOns3'
 import Bookings from './SubPages/Booking'
 
 
-function Home() {
-    const [myPackage, setMyPackage] = useState({})
-    const [selectedAddOn1, setSelectedAddOn1] = useState(false)
-    const [selectedAddOn2, setSelectedAddOn2] = useState(false)
-    const [booking, setBooking] = useState(false)
-    const Package = ['Standard Massage', 'sensual Massage']// 'BDSM Massage']
-    const addOn30 = ['Hot Stones', 'Hot Wax', 'Shroom Tea', 'Smoking', 'None']
-    const addOn100 = ['Double Trouble', 'Facials', 'None']
-    const addOn200 = ['Ball Trampling', 'Golden Shower', 'Mummification', 'Impact Play', 'Breath Play', 'Restraints', 'Queening', 'Foot Worship(Mine of course)', 'None']
-    const addTime = ['Yes, add 30min', 'No']
-
-    const hasAddOn1 = myPackage?.addOn1?.length > 0
-    const hasAddOn2 = myPackage?.addOn2?.length > 0
+function Home({ setPage }) {
 
 
 
-    useEffect(() => {
-        if (!hasAddOn1) setSelectedAddOn1(hasAddOn2 && hasAddOn1)
 
-    }, [myPackage])
-
-    useEffect(() => {
-        if (!hasAddOn1) setMyPackage(old => ({ ...old, addOn2: [] }))
-
-
-
-    }, [hasAddOn1])
-
-    const noBDSM = () => {
-        setMyPackage(old => ({ ...old, addOn3: ['None'] }))
-        setBooking(true)
-    }
 
 
     return (
@@ -50,7 +23,7 @@ function Home() {
 
 
             <div className='w-full h-auto  border-white z-10 absolute top-[41%] center'>
-                <button className='text-2xl   bg-black bg-opacity-75 font-bold text-center w-auto p-4 drop-shadow-lg text-purple-700 rounded-full  h-auto '>
+                <button onClick={() => { setPage(1) }} className='text-2xl   bg-black bg-opacity-75 font-bold text-center w-auto p-4 drop-shadow-lg text-purple-700 rounded-full  h-auto '>
                     <h1>Start Booking...</h1>
                 </button>
             </div>

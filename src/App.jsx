@@ -88,7 +88,12 @@ function App() {
   }, []);
 
 
-
+  const [page, setPage] = useState(0)
+  const [bookingInfo, setBookingInfo] = useState({
+    type: '',
+    total: 0,
+    addOns: []
+  })
 
 
 
@@ -99,10 +104,10 @@ function App() {
       {/* PAGES */}
       <UserContext.Provider value={[loggedInUser]}>
         {/* <UserPages openUserPage={openUserPage} setOpenUserPage={setOpenUserPage} /> */}
-        <Home />
-        <Home2 />
-        <Page3 />
-        <Bookings />
+        {page == 0 && <Home setPage={setPage} />}
+        {page == 1 && <Home2 setPage={setPage} setBookingInfo={setBookingInfo} />}
+        {page == 2 && <Page3 setPage={setPage} setBookingInfo={setBookingInfo} />}
+        {page == 3 && <Bookings bookingInfo={bookingInfo} />}
       </UserContext.Provider>
       {/* Footer */}
       <div className='bg-black bottom-0 w-full '>
