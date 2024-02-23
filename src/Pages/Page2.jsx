@@ -5,8 +5,8 @@ import React, { useState } from 'react'
 const Item = ({ index, service, setBookingInfo, setPage }) => {
     const [currentImage, setCurrentImage] = useState(service.imgs[0])
     return (
-        <div key={index} className='h-[27rem] w-72 border-purple-200 border m-auto  rounded-lg col-span-1 overflow-hidden '>
-            <div className='h-[70%] w-full relative '>
+        <div key={index} className='h-[27rem] w-72 border-black shadow-sm shadow-black border m-auto  rounded-lg col-span-1 overflow-hidden '>
+            <div className='h-[65%] w-full relative '>
                 <div className="absolute grid grid-cols-3 gap-2 w-full  z-50 left-0 bottom-4">
                     {service.imgs.map(item => {
                         return (
@@ -27,7 +27,7 @@ const Item = ({ index, service, setBookingInfo, setPage }) => {
             <div className='h-auto p-2 w-full  center-col'>
                 <h1 className='text-2xl font-bold file: text-center'>{service.name}</h1>
                 <h1 className='text-xl  file: text-center'>${service.price}/hr</h1>
-                <button onClick={() => { setBookingInfo(service); setPage(2) }} className='p-2 bg-purple-700 h-12 w-3/4 rounded'>Book Now</button>
+                <button onClick={() => { setBookingInfo(service); setPage(2) }} className='p-2 bg-black text-white hover:text-purple-700 trans h-12 w-3/4 rounded'>Book Now</button>
 
 
             </div>
@@ -84,8 +84,6 @@ function Page2({ setBookingInfo, setPage }) {
             price: 350,
             imgs: [
                 'https://sensuosity.co.uk/wp-content/uploads/2022/11/tantric-bg.jpg',
-                '',
-                '',
             ]
 
         },

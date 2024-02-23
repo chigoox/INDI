@@ -30,12 +30,11 @@ function Home({ setPage }) {
             </div>
 
             <div className='flex flex-col gap-4 absolute bottom-24 md:w-1/2 w-screen z-10 p-2 h-auto  text-white'>
-                <h1 className='text-3xl font-extrabold'>
-                    Delightful unreserved impossible few
+                <h1 className='text-6xl md:text-3xl font-extrabold'>
+                    Delightful massage
                 </h1>
                 <h1 className='text-lg font-bold'>
-                    see entreaties. She propriety immediate was improving. He or
-                    entrance humoured likewise moderate. Much nor game son
+                    Relax and rejuvenate with personalized massages tailored to your needs. Book your session today for ultimate wellness.
                 </h1>
             </div>
 

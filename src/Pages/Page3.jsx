@@ -17,7 +17,7 @@ function Page3({ setBookingInfo, setPage }) {
             <div className=' md:w-1/2'>
                 <div className=' '>
                     <h1 className='text-center'>Bundel and save!</h1>
-                    <button onClick={() => { toggleBundle() }} className={`${addBundle ? 'bg-purple-700' : 'bg-black'} h-12 w-3/4 m-auto border center trans`}>
+                    <button onClick={() => { toggleBundle() }} className={`${addBundle ? 'bg-purple-700' : 'bg-black'} h-12 w-3/4 m-auto border center hover:text-black trans`}>
                         Save $100 buy bundle
                     </button>
 
@@ -31,7 +31,7 @@ function Page3({ setBookingInfo, setPage }) {
                     {addOns.map((item, index) => {
                         return (
 
-                            <button onClick={() => { setSelectedAddons(old => { return ({ ...old, [item]: old[item] ? !old[item] : true }) }) }} className={` h-12 w-full border center trans ${selectedAddons[item] ? 'bg-purple-700' : 'bg-none'} `} key={index}>
+                            <button onClick={() => { setSelectedAddons(old => { return ({ ...old, [item]: old[item] ? !old[item] : true }) }) }} className={` hover:text-2xl hover:text-purple-600 h-12 w-full border center trans ${selectedAddons[item] ? 'bg-purple-700' : 'bg-none'} `} key={index}>
                                 {item}
                             </button>
                         )
@@ -40,7 +40,7 @@ function Page3({ setBookingInfo, setPage }) {
             </div>
 
             <div className='center w-1/2'>
-                <button onClick={() => { setBookingInfo(old => { return ({ ...old, addOns: selectedAddons, bundle: addBundle }) }); setPage(3) }} className='h-12 w-3/4 border rounded mt-4'>Continue</button>
+                <button onClick={() => { setBookingInfo(old => { return ({ ...old, addOns: selectedAddons, bundle: addBundle }) }); setPage(3) }} className='h-12 w-3/4 border hover:text-purple-700 trans rounded mt-4'>Continue</button>
             </div>
 
 
