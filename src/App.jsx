@@ -92,11 +92,10 @@ function App() {
   const [bookingInfo, setBookingInfo] = useState({
     type: '',
     total: 0,
-    addOns: []
   })
 
 
-  console.log(page)
+  console.log(bookingInfo)
 
   return (
     <div className="App w-full h-screen overflow-x-hidden    scroll-able relative">
@@ -107,7 +106,7 @@ function App() {
         {page == 0 && <Home setPage={setPage} />}
         {page == 1 && <Home2 setPage={setPage} setBookingInfo={setBookingInfo} />}
         {page == 2 && <Page3 setPage={setPage} setBookingInfo={setBookingInfo} />}
-        {page == 3 && <Bookings bookingInfo={bookingInfo} />}
+        {page == 3 && <Bookings bookingInfo={bookingInfo} setBookingInfo={setBookingInfo} />}
       </UserContext.Provider>
       {/* Footer */}
       <div className='bg-black bottom-0 w-full '>

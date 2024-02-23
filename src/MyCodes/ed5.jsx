@@ -49,6 +49,11 @@ export function handleInput5(key, value, stateSetter) {
 }
 
 
+export const removeItemFromArry = (array) => {
+    const index = array.indexOf(2);
+    return array.splice(index, 1);
+}
+
 
 
 export async function addToDatabase(collection, Doc, field, data) {

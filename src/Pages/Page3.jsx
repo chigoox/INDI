@@ -5,17 +5,21 @@ import React, { useState } from 'react'
 
 
 
-function Page3({ setBookingInfo, setPages }) {
+function Page3({ setBookingInfo, setPage }) {
     const addOns = ['Massage Gun', 'Hot Stones', 'Electro Therapy', 'Face Mask', 'Scalp Massage', 'Extra Time(15mins)']
+    const [selectedAddons, setSelectedAddons] = useState({})
+    const [addBundle, setAddBundle] = useState(false)
+    const toggleBundle = () => setAddBundle(!addBundle)
 
+    //removeItemFromArry
     return (
-        <div className='h-screen w-screen text-white flex flex-col md:items-center justify-center  bg-black'>
+        <div className='h-screen w-screen center text-white flex flex-col md:items-center justify-center  bg-black'>
             <div className=' md:w-1/2'>
                 <div className=' '>
                     <h1 className='text-center'>Bundel and save!</h1>
-                    <div className=' h-12 w-3/4 m-auto border center hover:bg-purple-600 '>
+                    <button onClick={() => { toggleBundle() }} className={`${addBundle ? 'bg-purple-700' : 'bg-black'} h-12 w-3/4 m-auto border center trans`}>
                         Save $100 buy bundle
-                    </div>
+                    </button>
 
                 </div>
 
@@ -27,16 +31,16 @@ function Page3({ setBookingInfo, setPages }) {
                     {addOns.map((item, index) => {
                         return (
 
-                            <div className=' h-12 border center hover:bg-purple-700 ' key={index}>
+                            <button onClick={() => { setSelectedAddons(old => { return ({ ...old, [item]: old[item] ? !old[item] : true }) }) }} className={` h-12 w-full border center trans ${selectedAddons[item] ? 'bg-purple-700' : 'bg-none'} `} key={index}>
                                 {item}
-                            </div>
+                            </button>
                         )
                     })}
                 </div>
             </div>
 
             <div className='center w-1/2'>
-                <button className='h-12 w-3/4 border rounded mt-4'>Continue</button>
+                <button onClick={() => { setBookingInfo(old => { return ({ ...old, addOns: selectedAddons, bundle: addBundle }) }); setPage(3) }} className='h-12 w-3/4 border rounded mt-4'>Continue</button>
             </div>
 
 

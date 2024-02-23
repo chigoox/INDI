@@ -40,12 +40,11 @@ import { UserContext } from '../../App'
 
 
 
-const Bookings = ({ setBooking, myPackage }) => {
+const Bookings = ({ bookingInfo, setBookingInfo }) => {
     const [adminDATA, setAdminDATA] = useState({})
     const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
+    console.log(bookingInfo)
 
-
-    const [bookingInfo, setBookingInfo] = useState({})
     const [reload, setReload] = useState(false)
     // display div of availables times
     const [calendarTouched, setCalendarTouched] = useState(false)
@@ -92,7 +91,7 @@ const Bookings = ({ setBooking, myPackage }) => {
                 start: startHour,
                 end: endHour
             },
-            { step: bookingInfo.extraTime == 'No' ? 60 : 90 }
+            { step: 180 }
         )
 
         // filter the available hours
@@ -120,7 +119,7 @@ const Bookings = ({ setBooking, myPackage }) => {
                     start: startHour,
                     end: endHour
                 },
-                { step: bookingInfo.extraTime == 'No' ? 60 : 90 }
+                { step: 180 }
             )
             // filter the available hours
             let freeTimes = hoursInDay.filter(
@@ -141,7 +140,8 @@ const Bookings = ({ setBooking, myPackage }) => {
 
     ]
 
-    const total = 150
+    //total is booking price + all addons filter for true and multiply by 30
+    const total = bookingInfo.price + (Object.values(bookingInfo.addOns).map((item) => { if (item == true) return item }).length) * 30
     useEffect(() => {
         fetchDocument('Admin', 'reservations', setAdminDATA)
 
@@ -149,15 +149,14 @@ const Bookings = ({ setBooking, myPackage }) => {
 
 
     const bookNow = () => {
-        console.log(total)
 
         fetch('/.netlify/functions/CheckOut', {
             method: 'POST',
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: total / 2,
-                name: myPackage.type
+                price: bookingInfo?.price * (0.40),
+                name: bookingInfo?.name,
             })
         }).then(res => {
             res.json().then(res => {
@@ -169,10 +168,6 @@ const Bookings = ({ setBooking, myPackage }) => {
     }
     return (
         <div className='z-30 bg-black   m-auto w-full text-white h-full hidescroll overflow-scroll'>
-
-
-
-            <button onClick={() => { setBooking(false) }} className='w-8 h-8 rounded-full mt-8 ml-2'><AiOutlineArrowLeft size={32} color='pink' /></button>
 
 
             {
