@@ -6,6 +6,7 @@ import AddOns1 from '../Componets/AddOns1'
 import AddOns2 from '../Componets/AddOns2'
 import AddOns3 from '../Componets/AddOns3'
 import Bookings from './SubPages/Booking'
+import Video from './../Videos/intro.mp4'
 
 
 function Home({ setPage }) {
@@ -67,7 +68,7 @@ function Home({ setPage }) {
             </div>
 
 
-            <video type='video/mp4' loop autoPlay playsInline muted className='top-0 h-screen w-full object-cover relative' src={'src/Videos/intro.mp4'}></video>
+            <video type='video/mp4' loop autoPlay playsInline muted className='top-0 h-screen w-full object-cover relative' src={Video}></video>
 
 
 
