@@ -99,7 +99,7 @@ function Page2({ setBookingInfo, setPage }) {
                     Services
                 </h1>
                 <h1 className='text-center'>
-                    For though result and talent add are parish valley. Songs in oh other avoid it hours woman style. In myself family as
+                    Indulge in transformative massages designed to uplift your spirit and renew your energy. Experience ultimate relaxation and rejuvenation.
                 </h1>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-2 lg:grid-cols-3   xl:w-3/4 hidescroll m-auto top-8 mb-20 border-t relative p-2 overflow-hidden overflow-y-scroll h-[70%] '>
