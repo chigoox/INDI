@@ -43,7 +43,6 @@ import { UserContext } from '../../App'
 const Bookings = ({ bookingInfo, setBookingInfo }) => {
     const [adminDATA, setAdminDATA] = useState({})
     const reservations = adminDATA?.allRes ? adminDATA?.allRes : []
-    console.log(bookingInfo)
 
     const [reload, setReload] = useState(false)
     // display div of availables times
@@ -150,12 +149,12 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
 
     const bookNow = () => {
 
-        fetch('/.netlify/functions/CheckOut', {
+        fetch('/api/CheckOut', {
             method: 'POST',
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: bookingInfo?.price * (0.40),
+                price: bookingInfo?.price * (0.50),
                 name: bookingInfo?.name,
             })
         }).then(res => {
