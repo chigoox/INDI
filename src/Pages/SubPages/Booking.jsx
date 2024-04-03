@@ -90,7 +90,7 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 start: startHour,
                 end: endHour
             },
-            { step: 180 }
+            { step: 60 }
         )
 
         // filter the available hours
@@ -118,7 +118,7 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                     start: startHour,
                     end: endHour
                 },
-                { step: 180 }
+                { step: 60 }
             )
             // filter the available hours
             let freeTimes = hoursInDay.filter(

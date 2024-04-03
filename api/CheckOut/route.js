@@ -1,20 +1,11 @@
-const fetch = require('node-fetch');
-
-const stripe = require('stripe')(process.env.STRIPE_SECRET_API_KEY, {
-  apiVersion: '2020-08-27',
-  appInfo: { // For sample support and debugging, not required for production:
-    name: "stripe-samples/checkout-one-time-payments",
-    version: "0.0.1",
-    url: "https://github.com/stripe-samples/checkout-one-time-payments"
-  }
-});
+import Stripe from 'stripe';
 
 
-export async function GET(requestx) {
 
-  const request = JSON.parse(requestx.body)
-  const { price, name } = request
-
+export async function POST(request) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  let data = await request.json();
+  let { price, name } = data
   const session = await stripe.checkout.sessions.create({
     line_items: [{
       price_data: {
@@ -32,13 +23,7 @@ export async function GET(requestx) {
     success_url: `http://indimassage.com/?successBook=true`,
     cancel_url: `http://indimassage.com/?canceledBook=true`,
   });
-  return new Response({
-    statusCode: 200,
-    body: JSON.stringify({
-      url: session.url,
-      session: session,
-    }),
-  });
+  return new Response(session.url);
 }
 
 

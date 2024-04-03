@@ -17,7 +17,7 @@ function Page3({ setBookingInfo, setPage }) {
             <div className=' md:w-1/2'>
                 <div className=' '>
                     <h1 className='text-center'>Bundel and save!</h1>
-                    <button onClick={() => { toggleBundle() }} className={`${addBundle ? 'bg-purple-700' : 'bg-black'} h-12 w-3/4 m-auto border center hover:text-black trans`}>
+                    <button onClick={() => { toggleBundle() }} className={`${addBundle ? 'bg-purple-700' : 'bg-black'} h-12 w-3/4 m-auto border center hover:text-white trans`}>
                         Save $100 buy bundle
                     </button>
 
@@ -27,7 +27,7 @@ function Page3({ setBookingInfo, setPage }) {
                     <h1 className='md:text-8xl text-7xl text-center text-white'>Addons</h1>
                 </div>
                 <div className='p-2 border'>
-                    <h1>Select</h1>
+                    <h1>Select $</h1>
                     {addOns.map((item, index) => {
                         return (
 
