@@ -59,6 +59,11 @@ body {
   background-color: white;
 }
 
+*{
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
 .trans-slow {
   transition: all 1000ms ease-in-out;
 }

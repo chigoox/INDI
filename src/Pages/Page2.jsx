@@ -5,27 +5,30 @@ import React, { useState } from 'react'
 const Item = ({ index, service, setBookingInfo, setPage }) => {
     const [currentImage, setCurrentImage] = useState(service.imgs[0])
     return (
-        <div key={index} className='h-[27rem] w-72 border-black shadow-sm shadow-black border m-auto  rounded-lg col-span-1 overflow-hidden '>
-            <div className='h-[65%] w-full relative '>
-                <div className="absolute grid grid-cols-3 gap-2 w-full  z-50 left-0 bottom-4">
-                    {service.imgs.map(item => {
-                        return (
-                            <div onMouseOver={() => {
-                                if (currentImage == item) return
-                                setCurrentImage(item)
-                            }} key={item} className='w-20 overflow-hidden col-span-1 h-20 m-auto rounded-lg bg-white '>
-                                <img className='h-full w-full object-cover' src={item} alt="" />
-                            </div>
-                        )
-                    })}
-                </div>
+        <div key={index} className='h-[27rem]  w-72 m-auto relative   rounded-lg col-span-1 overflow-hidden '>
+
+            <div className="absolute top-52 center w-full  h-fit  z-50 left-0 ">
+                {service.imgs.map(item => {
+                    return (
+                        <div clas onMouseOver={() => {
+                            if (currentImage == item) return
+                            setCurrentImage(item)
+                        }} key={item} className='w-16 h-16 shadow shadow-black overflow-hidden col-span-1  m-auto rounded-lg bg-white '>
+                            <img className='h-full w-full object-cover' src={item} alt="" />
+                        </div>
+                    )
+                })}
+            </div>
+
+            <div className='h-[65%] rounded-full w-full relative  overflow-hidden'>
+
                 <img
                     className='h-full w-full object-cover'
                     src={currentImage} alt="" />
 
             </div>
-            <div className='h-auto p-2 w-full  center-col'>
-                <h1 className='text-2xl font-bold file: text-center'>{service.name}</h1>
+            <div className='h-32 p-2 w-full  center-col'>
+                <h1 className='text-xl font-extralight file: text-center'>{service.name}</h1>
                 <h1 className='text-xl  file: text-center'>${service.price}/hr</h1>
                 <button onClick={() => { setBookingInfo(service); setPage(2) }} className='p-2 bg-black text-white hover:text-purple-700 trans h-12 w-3/4 rounded'>Book Now</button>
 
@@ -45,7 +48,7 @@ function Page2({ setBookingInfo, setPage }) {
             imgs: [
                 'https://pranarom.ca/blog/wp-content/uploads/2019/05/african-woman-enjoying-aromatherapy-massage-in-7Q48E9W-min-1170x658.jpg',
                 'https://i0.wp.com/www.sayangsmassagespa.com/wp-content/uploads/2019/08/Aromatherapy-Massage-1.png?resize=768%2C469&ssl=1',
-                'https://cdn-klodd.nitrocdn.com/ehXILJrndyIcitDskefUVpAzoEBvyyQO/assets/images/optimized/rev-b7fb3b5/sochi.edu/wp-content/uploads/aromatherapy-massage.jpg',
+                'https://meilimassage.files.wordpress.com/2018/12/aromatherapy-massage-near-me.jpg',
             ]
 
         },
