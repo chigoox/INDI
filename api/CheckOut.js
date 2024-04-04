@@ -26,7 +26,6 @@ export default async function POST(request) {
     cancel_url: `http://indimassage.com/?canceledBook=true`,
   });
 
-  console.log(session)
   return new Response(session.url);
 }
 
