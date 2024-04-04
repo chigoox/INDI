@@ -4,6 +4,7 @@ import Stripe from 'stripe';
 
 export default async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+  console.log(request)
   let data = await request.json();
   let { price, name } = data
   const session = await stripe.checkout.sessions.create({
