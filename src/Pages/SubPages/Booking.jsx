@@ -147,9 +147,9 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
     }, [reload, calendarTouched, selectedDay])
 
 
-    const bookNow = () => {
+    const bookNow = async () => {
 
-        fetch('/api/CheckOut', {
+        const data = await fetch('/api/CheckOut', {
             method: 'POST',
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
@@ -157,13 +157,12 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 price: bookingInfo?.price * (0.50),
                 name: bookingInfo?.name,
             })
-        }).then(async (res) => {
-            const data = res.json()
-            console.log(data)
-            window.location.href = data.url
-
-
         })
+
+        const da = await data.json()
+
+        console.log(da)
+        //window.location.href = data.url
     }
     return (
         <div className='z-30 bg-black   m-auto w-full text-white h-full hidescroll overflow-scroll'>
