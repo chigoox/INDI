@@ -158,7 +158,7 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 name: bookingInfo?.name,
             })
         }).then(async (res) => {
-            const data = await res.body.json()
+            const data = await res.json()
             console.log(data)
             window.location.href = data.url
 
