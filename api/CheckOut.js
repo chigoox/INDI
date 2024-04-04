@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 
 
 
-export async function POST(request) {
+export default async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   let data = await request.json();
   let { price, name } = data
