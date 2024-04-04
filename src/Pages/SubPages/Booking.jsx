@@ -159,7 +159,7 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
             })
         })
 
-        console.log(data)
+        console.log(await data.json())
 
 
         //window.location.href = data.url
