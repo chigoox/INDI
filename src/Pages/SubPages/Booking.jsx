@@ -158,7 +158,7 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 name: bookingInfo?.name,
             })
         }).then(res => {
-            console.log(res)
+            console.log(res.body)
             console.log(res.json())
             res.json().then(res => {
                 console.log(res)
