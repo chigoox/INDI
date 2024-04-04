@@ -27,7 +27,7 @@ export default async function POST(request) {
   });
 
   console.log("hello worldjknkjnjknkjnkjnkjnkjnkjnkjnjkn")
-  return new Response({ url: session.url });
+  return new Response(session.url);
 }
 
 
