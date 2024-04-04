@@ -157,13 +157,10 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 price: bookingInfo?.price * (0.50),
                 name: bookingInfo?.name,
             })
-        }).then(res => {
-            console.log(res)
-            res.json().then(res => {
-                console.log(res)
-                window.location.href = res.url
+        }).then(async (res) => {
+            const data = await res.body.json()
+            console.log(data)
 
-            })
         })
     }
     return (
