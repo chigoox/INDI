@@ -160,6 +160,8 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
         }).then(async (res) => {
             const data = await res.body.json()
             console.log(data)
+            window.location.href = data.url
+
 
         })
     }
