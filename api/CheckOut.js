@@ -23,7 +23,7 @@ export default async function POST(request) {
     success_url: `http://indimassage.com/?successBook=true`,
     cancel_url: `http://indimassage.com/?canceledBook=true`,
   });
-  return new Response({ data: session.url });
+  return new Response({ url: session.url });
 }
 
 
