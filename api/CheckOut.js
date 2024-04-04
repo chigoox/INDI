@@ -2,12 +2,12 @@ import Stripe from 'stripe';
 
 //updates
 
-const x = 1
 
 export default async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
   let data = await request.body;
   let { price, name } = data
+  console.log(price, name)
   const session = await stripe.checkout.sessions.create({
     line_items: [{
       price_data: {
@@ -25,6 +25,8 @@ export default async function POST(request) {
     success_url: `http://indimassage.com/?successBook=true`,
     cancel_url: `http://indimassage.com/?canceledBook=true`,
   });
+
+  console.log("hello worldjknkjnjknkjnkjnkjnkjnkjnkjnjkn")
   return new Response({ url: session.url });
 }
 
