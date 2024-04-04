@@ -1,6 +1,8 @@
 import Stripe from 'stripe';
 
+//updates
 
+const x = 1
 
 export default async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
