@@ -141,6 +141,34 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
     }, [reload, calendarTouched, selectedDay])
 
 
+
+
+
+    const canBook = () => {
+        const validateEmail = (email) => {
+            return String(email)
+                .toLowerCase()
+                .match(
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                );
+        };
+
+        const validatePhone = (phone) => {
+            return String(phone)
+                .toLowerCase()
+                .match(
+                    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+                );
+        };
+        if (validateEmail(bookingInfo.userEmail) && bookingInfo.userName && validatePhone(bookingInfo.userPhone)) {
+
+            return true
+
+        }
+
+        return false
+    }
+
     const bookNow = async () => {
         console.log(bookingInfo)
         const data = await fetch('/api/Checkout', {
@@ -153,7 +181,7 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 userName: bookingInfo?.userName,
                 userEmail: bookingInfo?.userEmail,
                 userPhone: bookingInfo?.userPhone,
-                bundled: bundled,
+                bundled: bookingInfo.bundle,
                 img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             })
         })
@@ -323,7 +351,13 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                     <h1 className='text-center text-pink-700 text-5xl'>{'$' + total}</h1>
                     <h1>+ Tax</h1>
                 </div>
-                <button onClick={bookNow} className='h-12 w-32 bg-pink-700'>Book Now</button>
+                <div className="center gap-4">
+                    <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Full n ame" type="text" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userName: target.value }) }) }} />
+                    <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Email" type="email" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userEmail: target.value }) }) }} />
+                    <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Phone" type="tel" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userPhone: target.value }) }) }} />
+                </div>
+                {!canBook() && <button disabled className={`h-12 w-32 cursor-not-allowed rounded-full ${canBook() ? ' bg-pink-700' : 'bg-gray-500'} `}>Book Now</button>}
+                {canBook() && <button onClick={bookNow} className={`h-12 w-32 rounded-full ${canBook() ? ' bg-pink-700' : 'bg-gray-500'} `}>Book Now</button>}
             </div>}
 
         </div>
