@@ -2,7 +2,7 @@ import Cors from "micro-cors";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-const stripe = require("stripe")(process.env.STRIPE_SEC);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const cors = Cors({
     allowMethods: ["POST", "HEAD"],
