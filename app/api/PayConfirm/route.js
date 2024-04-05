@@ -1,57 +1,46 @@
-import { sendEmail } from "@/app/apiCalls/Email";
+import { orderNumberPrefix } from "@/app/META";
+import { addToDatabase, fetchDocument, updateDatabaseItem } from "@/app/myCodes/Database";
+import { sendMail } from "@/app/myCodes/Email";
+import Cors from "micro-cors";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import Stripe from 'stripe';
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+const stripe = require("stripe")(process.env.STRIPE_SEC);
 
+const cors = Cors({
+    allowMethods: ["POST", "HEAD"],
+});
 
-export async function GET(request) {
-    const endpointSecret = process.env.STRIPE_WEBOOK_KEY
-    const sig = request.headers['stripe-signature'];
+const secret = process.env.STRIPE_WEBHOOK_KEY || "";
 
-    let event;
-
+export async function POST(request) {
     try {
-        event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
-    } catch (err) {
-        return NextResponse.json(`Webhook Error: ${err.message}`);
-        return;
+        const body = await request.text();
+
+        const signature = headers().get("stripe-signature");
+
+        const event = stripe.webhooks.constructEvent(body, signature, secret);
+
+
+
+        if (event.type === "checkout.session.completed") {
+            const { email } = event.data.object.metadata
+
+            console.log(email)
+
+
+
+
+        }
+        return NextResponse.json({ result: event, ok: true });
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json(
+            {
+                message: "something went wrong",
+                ok: false,
+            },
+            { status: 500 }
+        );
     }
-
-    // Handle the event
-    switch (event.type) {
-        case 'checkout.session.completed':
-            const checkoutSessionCompleted = event.data.object;
-
-            console.log(checkoutSessionCompleted)
-            sendEmail('dikeemmanuel54@gamil.com', 'test', { name: "emmauel", phone: 9082202312, email: 'dikeemmanuel54@gmail.com' }, 'new')
-
-
-
-
-
-
-            // Then define and call a function to handle the event checkout.session.completed
-            break;
-        // ... handle other event types
-        default:
-            console.log(`Unhandled event type ${event.type}`);
-    }
-
-
-
-    return NextResponse.json({ status: 202 })
-
-
-
 }
-
-
-
-
-
-
-
-
-
-

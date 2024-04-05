@@ -148,9 +148,13 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: bookingInfo?.price * (0.50),
+                price: (bookingInfo?.price * (bookingInfo.bundle ? 1 : 0.50) * bookingInfo.bundle ? 4 : 1) - bookingInfo.bundle ? 50 : 0, //if bundled( price * 4 - 50) else (price/2)
                 name: bookingInfo?.name,
-                img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                userName: bookingInfo?.userName,
+                userEmail: bookingInfo?.userEmail,
+                userPhone: bookingInfo?.userPhone,
+                bundled: bundled,
+                img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             })
         })
 
