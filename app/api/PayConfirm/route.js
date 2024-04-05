@@ -24,7 +24,7 @@ export async function GET(request) {
             const checkoutSessionCompleted = event.data.object;
 
             console.log(checkoutSessionCompleted)
-            sendEmail('dikeemmanuel54@gamil.com', 'test', { name: "emmauel", phone: 9082202312, email: 'dikeemmanuel54@gmail.com' }, (<div>hello</div>))
+            sendEmail('dikeemmanuel54@gamil.com', 'test', { name: "emmauel", phone: 9082202312, email: 'dikeemmanuel54@gmail.com' }, 'new')
 
 
 

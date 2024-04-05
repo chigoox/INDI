@@ -1,5 +1,5 @@
-import NewEmail from '@/app/GlobalComponets/Email Componets/NewClient';
-import SendEmailBody from '@/app/GlobalComponets/Email Componets/SendEmailBody';
+import NewEmail from '@/app/Componets/Email Componets/NewClient';
+import SendEmailBody from '@/app/Componets/Email Componets/SendEmailBody';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
