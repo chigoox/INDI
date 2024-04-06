@@ -11,8 +11,10 @@ const isDev = () => {
 
 const inDev = isDev()
 
+console.log("first")
+
 export const sendEmail = async (toEmail, subject, userData, html) => {
-    const { data } = await axios.post(inDev ? '/api/SendEmailz' : 'https://www.indimassage.com/api/SendEmail', {
+    const { data } = await axios.post(inDev ? '/api/SendEmail' : 'https://www.indimassage.com/api/SendEmail', {
         toEmail: toEmail,
         subject: subject,
         html: html,
