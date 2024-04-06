@@ -1,9 +1,15 @@
-import { sendEmail } from "@/app/apiCalls/Email";
+import NewEmail from "@/app/Componets/Email Componets/NewClient";
+import SendEmailBody from "@/app/Componets/Email Componets/SendEmailBody";
 import Cors from "micro-cors";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
+import { Resend } from 'resend';
+
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const RESEND_API_KEY = process.env.RESEND_KEY;
+const resend = new Resend(RESEND_API_KEY)
+
 
 const cors = Cors({
     allowMethods: ["POST", "HEAD"],
@@ -24,9 +30,14 @@ export async function POST(request) {
         if (event.type === "checkout.session.completed") {
             const { email } = event.data.object.metadata
 
-            console.log(email)
-
-            sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
+            console.log('before resend')
+            await resend.emails.send({
+                from: 'Indi <Indi@resend.dev>',
+                to: email,
+                subject: 'Booked with Indi!',
+                react: data.html == 'send' ? SendEmailBody({ userData: event.data.object.metadata }) :
+                    data.html == 'new' ? NewEmail({ userData: data.userData }) : (<div></div>),
+            });
 
 
 
