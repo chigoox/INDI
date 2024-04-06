@@ -20,7 +20,7 @@ export async function POST(request) {
 
 
     const data = await request.json()
-    const { price, name, img, userName, userEmail, userPhone, bundled } = data
+    const { price, name, img, userName, userEmail, userPhone, bundled, appointment, } = data
 
 
     const session = await stripe.checkout.sessions.create({
@@ -44,6 +44,8 @@ export async function POST(request) {
             name: userName.toString(),
             phone: userPhone.toString(),
             bundled: bundled.toString(),
+            appointment: appointment.toString(),
+
         },
     });
 

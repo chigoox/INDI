@@ -1,3 +1,4 @@
+import { sendEmail } from "@/app/apiCalls/Email";
 import Cors from "micro-cors";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -24,6 +25,8 @@ export async function POST(request) {
             const { email } = event.data.object.metadata
 
             console.log(email)
+
+            sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
 
 
 

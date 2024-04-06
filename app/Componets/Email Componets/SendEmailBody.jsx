@@ -18,7 +18,7 @@ function SendEmailBody({ userData }) {
         <Html>
             <Head />
             <Preview>
-                High Quality Solid Wood Cabinets When You Need Them!
+                Your massage has been booked
             </Preview>
             <Body style={main}>
                 <Container style={container}>
@@ -26,12 +26,15 @@ function SendEmailBody({ userData }) {
                         src={'/Images/emailLogo.jpg'}
                         width="170"
                         height="50"
-                        alt="IKCO"
+                        alt="INDI"
                         style={logo}
                     />
                     <Text style={paragraph}>Hi {userData.name},</Text>
                     <Text style={paragraph}>
-                        Welcome to IKCO, we have recived your information and will contact you shortly.
+                        Your massage has been booked
+                    </Text>
+                    <Text style={paragraph}>
+                        Your massage has been booked
                     </Text>
                     <Section style={btnContainer}>
                         <Button style={button} href="https://ikcocabinets.com/Catalog">

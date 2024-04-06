@@ -17,7 +17,7 @@ export async function POST(request) {
 
     try {
         const res = await resend.emails.send({
-            from: 'IKCO <IKCO@resend.dev>',
+            from: 'Indi <Indi@resend.dev>',
             to: data.toEmail,
             subject: data.subject,
             react: data.html == 'send' ? SendEmailBody({ userData: data.userData }) :
