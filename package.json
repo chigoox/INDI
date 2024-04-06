@@ -11,6 +11,7 @@
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
     "@react-email/components": "0.0.15",
+    "@react-email/render": "0.0.12",
     "@stripe/react-stripe-js": "^1.16.5",
     "@stripe/stripe-js": "^1.47.0",
     "antd": "^5.15.2",
