@@ -1,6 +1,18 @@
 import axios from 'axios'
+
+
+const isDev = () => {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        return true
+    } else {
+        return false
+    }
+}
+
+const inDev = isDev()
+
 export const sendEmail = async (toEmail, subject, userData, html) => {
-    const { data } = await axios.post('/api/SendEmail', {
+    const { data } = await axios.post(inDev ? '/api/SendEmailz' : 'https://www.indimassage.com/api/SendEmail', {
         toEmail: toEmail,
         subject: subject,
         html: html,
