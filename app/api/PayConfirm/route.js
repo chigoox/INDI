@@ -27,8 +27,8 @@ export async function POST(request) {
         if (event.type === "checkout.session.completed") {
             const { email } = event.data.object.metadata
 
-            sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
-            addToDatabase('Admin', 'sendEmail', email, event.data.object.metadata)
+            sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'new')
+            addToDatabase('Admin', 'sendEmail', email, { ...event.data.object.metadata })
 
 
 
