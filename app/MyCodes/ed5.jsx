@@ -1,9 +1,7 @@
 
-import { collection, doc, setDoc, getDocs, getDoc, updateDoc, arrayUnion, arrayRemove, deleteField } from "firebase/firestore";
-import { DATABASE } from '../../Firebase'
-import React, { useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { message } from "antd";
+import { arrayUnion, deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { DATABASE } from '../../Firebase';
 
 
 export const notify = (notification, duration = 5) => {
@@ -93,4 +91,4 @@ async function fetchDocument(collection, document, setterfunction) {
 
 
 
-export { fetchDocument }
+export { fetchDocument };
