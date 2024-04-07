@@ -1,6 +1,6 @@
 
 import { message } from "antd";
-import { arrayUnion, deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, arrayUnion, deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { DATABASE } from '../../Firebase';
 
 
@@ -46,6 +46,13 @@ export async function addToDatabase(collection, Doc, field, data) {
     await setDoc(doc(DATABASE, collection, Doc), {
         [field]: data,
     }, { merge: true });
+
+}
+
+export async function addDocument(collection, Doc, data) {
+
+
+    await addDoc(doc(DATABASE, collection, Doc), data);
 
 }
 
