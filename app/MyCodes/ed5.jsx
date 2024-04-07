@@ -49,12 +49,6 @@ export async function addToDatabase(collection, Doc, field, data) {
 
 }
 
-export async function addDocument(collection, Doc, data) {
-
-
-    await addDoc(doc(DATABASE, collection, Doc), data);
-
-}
 
 export async function updateDatabaseItem(collection, Doc, Field, Value) {
     await updateDoc(doc(DATABASE, collection, Doc), {
