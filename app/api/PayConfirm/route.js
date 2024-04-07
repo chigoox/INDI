@@ -1,3 +1,4 @@
+import { addToDatabase } from "@/app/MyCodes/ed5";
 import { sendEmail } from "@/app/apiCalls/Email";
 import Cors from "micro-cors";
 import { headers } from "next/headers";
@@ -27,6 +28,7 @@ export async function POST(request) {
             const { email } = event.data.object.metadata
 
             sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
+            addToDatabase('Admin', email, event.data.object.metadata)
 
 
 
