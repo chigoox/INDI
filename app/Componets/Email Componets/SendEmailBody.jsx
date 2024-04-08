@@ -14,6 +14,7 @@ import {
 
 function SendEmailBody({ userData }) {
 
+
     return (
         <Html>
             <Head />
@@ -31,24 +32,24 @@ function SendEmailBody({ userData }) {
                     />
                     <Text style={paragraph}>Hi {userData.name},</Text>
                     <Text style={paragraph}>
-                        Your massage has been booked
+                        Your massage has been booked;
                     </Text>
                     <Text style={paragraph}>
-                        Your massage has been booked
+                        Appointment: {userData.appointment}
                     </Text>
                     <Section style={btnContainer}>
                         <Button style={button} href="https://ikcocabinets.com/Catalog">
-                            View Catalog
+                            Book another massage...
                         </Button>
                     </Section>
                     <Text style={paragraph}>
                         Best,
                         <br />
-                        The IKCO team
+                        The Indi
                     </Text>
                     <Hr style={hr} />
                     <Text style={footer}>
-                        Wholesaler of Refined Cabinetry in New Jersey. High Quality Solid Wood Cabinets When You Need Them!
+                        Luxury Massage In New Jersey. Best Massages When You Need Them!
                     </Text>
                 </Container>
             </Body>

@@ -13,8 +13,6 @@ export async function POST(request) {
     let data = await request.json();
 
 
-    console.log('from send email')
-
     try {
         const res = await resend.emails.send({
             from: 'Indi <Indi@resend.dev>',

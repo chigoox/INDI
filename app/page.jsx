@@ -16,7 +16,6 @@ const auth = getAuth();
 function Page() {
   const [loggedInUser, setLoggedInUser] = useState({})
   const uid = loggedInUser?.uid
-  const [openUserPage, setOpenUserPage] = useState()
   const [adminReservation, setAdminadminReservation] = useState()
   const [userReservation, setUserReservation] = useState()
 
@@ -40,6 +39,7 @@ function Page() {
     updateDatabaseItem('Users', uid, 'willBook')
 
   }
+
   const canceledBook = () => {
     if (loggedInUser) {
       updateDatabaseItem('Admin', 'onHold', uid)

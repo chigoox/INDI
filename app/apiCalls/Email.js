@@ -13,22 +13,28 @@ const inDev = isDev()
 
 
 export const sendEmail = async (toEmail, subject, userData, html) => {
-    const { data } = await axios.post(inDev ? '/api/SendEmail' : 'https://www.indimassage.com/api/SendEmail', {
-        toEmail: toEmail,
-        subject: subject,
-        html: html,
-        userData: userData
+    const isUserDataEmpty = Object.keys(userData).length === 0
 
-    },
-        {
-            headers: {
-                'Cache-Control': 'no-cache',
-                "Content-Type": "application/json",
-                'Pragma': 'no-cache',
-                'Expires': '0',
-            },
-        })
+    try {
+        const { data } = await axios.post(inDev ? 'http://localhost:3000/api/SendEmail' : 'https://www.indimassage.com/api/SendEmail', {
+            toEmail: toEmail || 'dikeemmanuel54@gmail.com',
+            subject: subject || 'test',
+            html: html || 'send',
+            userData: isUserDataEmpty ? { name: 'emmanuel', phone: '9088888888' } : userData
 
-    return (data)
+        },
+            {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    "Content-Type": "application/json",
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
+                },
+            })
+
+        return (data)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
