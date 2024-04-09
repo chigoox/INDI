@@ -22,13 +22,12 @@ export async function POST(request) {
 
         const event = stripe.webhooks.constructEvent(body, signature, secret);
 
-        console.log(event.data.object.metadata)
 
         if (event.type === "checkout.session.completed") {
             const { email } = event.data.object.metadata
             const { massageID } = await fetchDocument('Admin', 'meta')
             await sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
-            await addDocument('Reservations', `M-${massageID}`, event.data.object.metadata)
+            await addDocument('Reservations', `M-${massageID}`, { ...event.data.object.metadata, paid: true })
             await addToDatabase('Admin', 'meta', 'massageID', massageID + 1)
 
 
