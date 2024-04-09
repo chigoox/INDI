@@ -7,6 +7,7 @@ import Home2 from './Pages/Page2';
 import Page3 from './Pages/Page3';
 import Bookings from './Pages/SubPages/Booking';
 import './globals.css';
+import Loading from "./Componets/Loading";
 
 
 
@@ -18,10 +19,9 @@ function Page() {
   const uid = loggedInUser?.uid || (typeof window !== 'undefined') ? localStorage.getItem('LOCAL_UID') : ''
   const [adminReservation, setAdminadminReservation] = useState()
   const [userReservation, setUserReservation] = useState()
-
+  const [loading, setLoading] = useState(true)
 
   const addadminReservationToDataBase = async () => {
-    console.log('first')
     await addToDatabase('Users', uid, 'reservation', adminReservation[uid])
     await updateArrayDatabaseItem('Admin', 'reservations', 'allRes', adminReservation[uid])
   }
@@ -37,20 +37,21 @@ function Page() {
   }
 
   const successBook = async () => {
-
+    setLoading(true)
     await fetchDocument('Admin', 'onHold', setAdminadminReservation)
 
-    updateDatabaseItem('Admin', 'onHold', uid)
-    updateDatabaseItem('Users', uid, 'willBook')
-
+    await updateDatabaseItem('Admin', 'onHold', uid)
+    await updateDatabaseItem('Users', uid, 'willBook')
+    setLoading(false)
   }
 
-  const canceledBook = () => {
+  const canceledBook = async () => {
+    setLoading(true)
+    await updateDatabaseItem('Admin', 'onHold', uid)
+    await updateDatabaseItem('Users', uid, 'willBook')
     if (loggedInUser) {
-      updateDatabaseItem('Admin', 'onHold', uid)
-      updateDatabaseItem('Users', uid, 'willBook')
     }
-
+    setLoading(false)
   }
 
 
@@ -86,6 +87,7 @@ function Page() {
     if (query.get("success")) notify("Order placed");
     if (query.get("canceled")) notify("Order Canceled");
 
+
   }, []);
 
 
@@ -103,11 +105,10 @@ function Page() {
   })
 
 
-  console.log(bookingInfo)
 
   return (
     <div className="App w-full h-screen overflow-x-hidden    scroll-able relative">
-
+      {loading && <Loading />}
       {/* PAGES */}
       <UserContext.Provider value={[loggedInUser]}>
         {/* <UserPages openUserPage={openUserPage} setOpenUserPage={setOpenUserPage} /> */}

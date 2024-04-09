@@ -12,6 +12,7 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
     console.log(startOfDay(selectedTime))
 
     const bookTime = () => {
+        document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth' })
         const fullDate = format(selectedTime, "MM-dd-yy hh:mm aaaaa'm'")
         const date = format(selectedTime, "MM-dd-yy")
         const time12 = format(selectedTime, "HH:mm")
@@ -21,7 +22,6 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
             return (parseFloat(`${time12.substring(0, 2)}.${time12.substring(3, 4) == '3' ? '5' : '0'}`))
         }
 
-        console.log(user.uid)
 
 
         setBookingInfo(old => {

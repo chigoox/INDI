@@ -27,6 +27,7 @@ import { cn, dayNames } from "../../../lib/utils"
 import AvailableHours from "../../Componets/Bookings/AvailableHours"
 import TimesBar from '../../Componets/Bookings/TimesBar'
 import { fetchDocument } from '../../MyCodes/ed5'
+import Loading from "@/app/Componets/Loading"
 
 
 
@@ -134,7 +135,10 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
     ]
 
     //total is booking price + all addons filter for true and multiply by 30
-    const total = bookingInfo.price + (Object.values(bookingInfo.addOns).map((item) => { if (item == true) return item }).length) * 30
+    let total = bookingInfo.price + (Object.values(bookingInfo.addOns).map((item) => { if (item == true) return item }).length) * 30
+    console.log(total)
+    total = (total * (bookingInfo.bundle ? 1.0 : 0.50) * (bookingInfo.bundle ? 4.0 : 1.0)) - (bookingInfo.bundle ? 50 : 0), //if bundled( price * 4 - 50) else (price/2)
+        console.log(total)
     useEffect(() => {
         fetchDocument('Admin', 'reservations', setAdminDATA)
 
@@ -168,14 +172,16 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
 
         return false
     }
+    const [loading, setLoading] = useState(false)
 
     const bookNow = async () => {
+        setLoading(true)
         const data = await fetch('/api/Checkout', {
             method: 'POST',
             pinkirect: 'follow',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                price: (bookingInfo?.price * (bookingInfo.bundle ? 1 : 0.50) * bookingInfo.bundle ? 4 : 1) - bookingInfo.bundle ? 50 : 0, //if bundled( price * 4 - 50) else (price/2)
+                price: total,// ORIGINAL (bookingInfo?.price * (bookingInfo.bundle ? 1 : 0.50) * bookingInfo.bundle ? 4 : 1) - bookingInfo.bundle ? 50 : 0, //if bundled( price * 4 - 50) else (price/2)
                 name: bookingInfo?.name,
                 userName: bookingInfo?.userName,
                 userEmail: bookingInfo?.userEmail,
@@ -189,10 +195,12 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
         let URL = await data.json()
         URL = URL.url
         window.location.href = URL
+
     }
+
     return (
         <div className='z-30 bg-black   m-auto w-full text-white h-full hidescroll overflow-scroll'>
-
+            {loading && <Loading />}
 
             {
                 <div className={`mt-10  trans flex flex-col  md:flex-row   md:items-start  lg:justify-center    bg-black mb-10 md:mb-24`}>
@@ -347,12 +355,12 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
             {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
                 <h1 className='text-center text-pink-700'>depoit half to comfirm booking</h1>
-                <div className='center gap-1'>
+                <div id="checkout" className='center gap-1'>
                     <h1 className='text-center text-pink-700 text-5xl'>{'$' + total}</h1>
                     <h1>+ Tax</h1>
                 </div>
-                <div className="center gap-4">
-                    <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Full n ame" type="text" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userName: target.value }) }) }} />
+                <div className="center gap-4 mb-8">
+                    <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Full name" type="text" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userName: target.value }) }) }} />
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Email" type="email" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userEmail: target.value }) }) }} />
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Phone" type="tel" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userPhone: target.value }) }) }} />
                 </div>
