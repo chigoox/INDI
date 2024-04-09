@@ -20,8 +20,8 @@ export async function POST(request) {
 
 
     const data = await request.json()
-    const { price, name, img, userName, userEmail, userPhone, bundled, appointment, } = data
-
+    const { price, name, img, addons, userName, userEmail, userPhone, bundled, appointment, uid } = data
+    console.log(uid)
 
     const session = await stripe.checkout.sessions.create({
         line_items: [{
@@ -40,11 +40,15 @@ export async function POST(request) {
         success_url: inDev ? `http://localhost:3000/?successBook=true` : `https://indimassage.com/?successBook=true`,
         cancel_url: inDev ? `http://localhost:3000/?canceledBook=true` : `https://indimassage.comq/?canceledBook=true`,
         metadata: {
+            name: name,
+            price: price.toString(),
             email: userEmail.toString(),
             name: userName.toString(),
             phone: userPhone.toString(),
             bundled: bundled.toString(),
+            addons: JSON.stringify(addons),
             appointment: appointment.toString(),
+            uid: uid.toString(),
 
         },
     });

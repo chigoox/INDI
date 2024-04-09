@@ -19,7 +19,7 @@ function Page() {
   const uid = loggedInUser?.uid || (typeof window !== 'undefined') ? localStorage.getItem('LOCAL_UID') : ''
   const [adminReservation, setAdminadminReservation] = useState()
   const [userReservation, setUserReservation] = useState()
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const addadminReservationToDataBase = async () => {
     await addToDatabase('Users', uid, 'reservation', adminReservation[uid])
@@ -28,7 +28,6 @@ function Page() {
 
 
   if (adminReservation) {
-    console.log('first')
     addadminReservationToDataBase()
     setAdminadminReservation()
   }
@@ -38,8 +37,12 @@ function Page() {
 
   const successBook = async () => {
     setLoading(true)
+
     await fetchDocument('Admin', 'onHold', setAdminadminReservation)
 
+
+
+    await fetchDocument('Admin', 'onHold', setAdminadminReservation)
     await updateDatabaseItem('Admin', 'onHold', uid)
     await updateDatabaseItem('Users', uid, 'willBook')
     setLoading(false)
