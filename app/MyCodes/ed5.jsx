@@ -38,8 +38,8 @@ export const removeItemFromArry = (array) => {
     return array.splice(index, 1);
 }
 
-export async function addDocument(collection, doc, data) {
-    await setDoc(doc(DATABASE, collection, doc), data, { merge: true });
+export async function addDocument(collection, _doc, data) {
+    await setDoc(doc(DATABASE, collection, _doc), data, { merge: true });
 }
 
 export async function addToDatabase(collection, Doc, field, data) {
@@ -90,6 +90,7 @@ async function fetchDocument(collection, document, setterfunction) {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
         if (setterfunction) setterfunction(docSnap.data());
+        return docSnap.data()
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");

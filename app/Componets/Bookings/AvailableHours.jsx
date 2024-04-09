@@ -22,7 +22,7 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
         }
 
         console.log(user.uid)
-        console.log(book)
+
 
         setBookingInfo(old => {
             const data = { ...old, apointment: fullDate, date: date, time12: time12, time24: time24, dateMain: addHours(startOfDay(selectedTime), conTime(time12)).toString() }
