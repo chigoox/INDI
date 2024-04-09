@@ -1,3 +1,4 @@
+import { addDocument, addToDatabase, fetchDocument } from "@/app/MyCodes/ed5";
 import { sendEmail } from "@/app/apiCalls/Email";
 import Cors from "micro-cors";
 import { headers } from "next/headers";
@@ -25,10 +26,10 @@ export async function POST(request) {
 
         if (event.type === "checkout.session.completed") {
             const { email } = event.data.object.metadata
-
-            sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
-            //addToDatabase('Admin', 'sendEmail', email, { ...event.data.object.metadata })
-
+            const { massageID } = await fetchDocument('Admin', 'meta')
+            await sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
+            await addDocument('Reservations', `M-${massageID}`, event.data.object.metadata)
+            await addToDatabase('Admin', 'meta', 'massageID', massageID + 1)
 
 
 

@@ -38,7 +38,9 @@ export const removeItemFromArry = (array) => {
     return array.splice(index, 1);
 }
 
-
+export async function addDocument(collection, doc, data) {
+    await setDoc(doc(DATABASE, collection, doc), data, { merge: true });
+}
 
 export async function addToDatabase(collection, Doc, field, data) {
 
@@ -64,7 +66,12 @@ export async function updateArrayDatabaseItem(collection, Doc, Field, Value) {
 
 
 
+//random number and text of size n
+export function getRandTN(size = 7) {
+    const result = Math.random().toString(36).substring(2, size < 7 ? 7 : size);
+    return result;
 
+}
 
 
 
@@ -82,7 +89,7 @@ async function fetchDocument(collection, document, setterfunction) {
     const docRef = doc(DATABASE, collection, document ? document : null);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-        setterfunction(docSnap.data());
+        if (setterfunction) setterfunction(docSnap.data());
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");

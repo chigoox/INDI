@@ -1,14 +1,14 @@
-import { addHours, format, isSameMinute, startOfDay, startOfToday } from "date-fns"
+import { addHours, format, isSameMinute, startOfDay } from "date-fns"
 import { CheckCircle2 } from "lucide-react"
-import React, { memo, useContext, useState } from "react"
+import { memo, useContext, useState } from "react"
 import { cn } from "../../../lib/utils"
-import { addToDatabase, updateArrayDatabaseItem } from "../../MyCodes/ed5"
+import { addToDatabase } from "../../MyCodes/ed5"
 import { UserContext } from "../../page"
 
 // eslint-disable-next-line react/display-name
 const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) => {
     const [selectedTime, setSelectedTime] = useState()
-    const user = useContext(UserContext)[0]
+    const user = ((typeof window !== 'undefined') ? { uid: localStorage.getItem('LOCAL_UID') } : '') // useContext(UserContext)[0] ||
     console.log(startOfDay(selectedTime))
 
     const bookTime = () => {
@@ -21,6 +21,8 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
             return (parseFloat(`${time12.substring(0, 2)}.${time12.substring(3, 4) == '3' ? '5' : '0'}`))
         }
 
+        console.log(user.uid)
+        console.log(book)
 
         setBookingInfo(old => {
             const data = { ...old, apointment: fullDate, date: date, time12: time12, time24: time24, dateMain: addHours(startOfDay(selectedTime), conTime(time12)).toString() }

@@ -1,7 +1,7 @@
 'use client'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { createContext, useEffect, useState } from 'react';
-import { addToDatabase, fetchDocument, notify, updateArrayDatabaseItem, updateDatabaseItem } from './MyCodes/ed5';
+import { addToDatabase, fetchDocument, getRandTN, notify, updateArrayDatabaseItem, updateDatabaseItem } from './MyCodes/ed5';
 import Home from './Pages/Home';
 import Home2 from './Pages/Page2';
 import Page3 from './Pages/Page3';
@@ -15,20 +15,25 @@ const auth = getAuth();
 
 function Page() {
   const [loggedInUser, setLoggedInUser] = useState({})
-  const uid = loggedInUser?.uid
+  const uid = loggedInUser?.uid || (typeof window !== 'undefined') ? localStorage.getItem('LOCAL_UID') : ''
   const [adminReservation, setAdminadminReservation] = useState()
   const [userReservation, setUserReservation] = useState()
 
 
   const addadminReservationToDataBase = async () => {
+    console.log('first')
     await addToDatabase('Users', uid, 'reservation', adminReservation[uid])
     await updateArrayDatabaseItem('Admin', 'reservations', 'allRes', adminReservation[uid])
   }
 
 
   if (adminReservation) {
+    console.log('first')
     addadminReservationToDataBase()
     setAdminadminReservation()
+  }
+  if (!userReservation) {
+    if (uid) fetchDocument('Users', uid, setUserReservation)
   }
 
   const successBook = async () => {
@@ -47,13 +52,12 @@ function Page() {
     }
 
   }
-  if (!userReservation) {
-    if (uid) fetchDocument('Users', uid, setUserReservation)
-  }
+
+
   useEffect(() => {
 
-    if (userReservation) {
-      updateArrayDatabaseItem('Users', uid, 'pastReservation', userReservation.reservation)
+    if (userReservation?.reservation) {
+      updateArrayDatabaseItem('Users', uid, 'pastReservation', userReservation?.reservation)
 
     }
     // Check to see if this is a redirect back from Checkout
@@ -84,6 +88,13 @@ function Page() {
 
   }, []);
 
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (!localStorage.getItem('LOCAL_UID')) localStorage?.setItem('LOCAL_UID', getRandTN(10));
+
+    }
+  }, [])
 
   const [page, setPage] = useState(0)
   const [bookingInfo, setBookingInfo] = useState({
