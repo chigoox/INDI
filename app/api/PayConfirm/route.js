@@ -26,7 +26,9 @@ export async function POST(request) {
 
         if (event.type === "checkout.session.completed") {
             const { email } = event.data.object.metadata
-            const { massageID } = await fetchDocument('Admin', 'meta')
+            const data = await fetchDocument('Admin', 'meta')
+            const { massageID } = data
+
             await sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
             await addDocument('Reservations', `M-${massageID}`, event.data.object.metadata)
             await addToDatabase('Admin', 'meta', 'massageID', massageID + 1)
