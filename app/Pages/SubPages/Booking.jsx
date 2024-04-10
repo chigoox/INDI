@@ -355,14 +355,14 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
                 </div>
 
             }
-            {bookingInfo.apointment && <div className=' mb-96  center flex-col text-white p-2'>
+            {bookingInfo.apointment && <div id="checkout" className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
                 <h1 className='text-center text-pink-700'>depoit half to comfirm booking</h1>
-                <div id="checkout" className='center gap-1'>
+                <div className='center gap-1'>
                     <h1 className='text-center text-pink-700 text-5xl'>{'$' + total}</h1>
                     <h1>+ Tax</h1>
                 </div>
-                <div className="center gap-4 mb-8">
+                <div className=" flex md:flex-row flex-col items-start justify-center gap-4 mb-8">
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Full name" type="text" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userName: target.value }) }) }} />
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Email" type="email" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userEmail: target.value }) }) }} />
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Phone" type="tel" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userPhone: target.value }) }) }} />
