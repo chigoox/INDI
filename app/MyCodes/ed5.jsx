@@ -1,6 +1,6 @@
 
 import { message } from "antd";
-import { addDoc, arrayUnion, deleteField, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { addDoc, arrayUnion, collection, deleteField, doc, getDoc, getDocs, limit, orderBy, query, setDoc, updateDoc } from "firebase/firestore";
 import { DATABASE } from '../../Firebase';
 
 
@@ -51,6 +51,20 @@ export async function addToDatabase(collection, Doc, field, data) {
 
 }
 
+
+export const fetchInOrder = async (datacollection, orderby, _limit) => {
+    const ref = collection(DATABASE, datacollection)
+    const qry = _limit ? query(ref, orderBy(orderby, 'desc'), limit(_limit)) : query(ref, orderBy(orderby, 'desc'))
+    const snapShot = await getDocs(qry)
+
+    let data = []
+    snapShot.forEach((doc) => {
+        data = [...data, doc.data()]
+    });
+
+    return data
+
+}
 
 export async function updateDatabaseItem(collection, Doc, Field, Value) {
     await updateDoc(doc(DATABASE, collection, Doc), {

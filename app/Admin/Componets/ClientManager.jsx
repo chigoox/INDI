@@ -21,21 +21,21 @@ function ClientManager({ clientList }) {
                 <div className='w-full shadow-sm font-bold   h-10  flex items-center justify-between px-4'>
                     <h1 className='w-1/4'>Name</h1>
                     <h1 className='w-1/4'>Appointment</h1>
-                    <h1 className='w-1/4'>Contact</h1>
+                    <h1 className='w-1/3'>Contact</h1>
                     <h1 className='w-1/4 lg:block hidden'>Status</h1>
                 </div>
                 {(clientList).map((item) => {
                     return (
-                        <div key={item} className='w-full my-1  shadow-sm text-left  bg-gray-300 h-10  flex items-center justify-between px-4'>
-                            {<h1 className='w-1/4 font-extralight'>{item?.name}</h1>}
-                            {<h1 className='w-1/4 font-extralight'>{item?.apointment}</h1>}
-                            <div className="">
-                                {<h1 className='w-1/4 font-extralight'>{item?.email}</h1>}
-                                {<h1 className='w-1/4 font-extralight'>{item?.email}</h1>}
+                        <div key={item} className='w-full my-1 rounded shadow-sm text-left  bg-gray-300 h-10  flex items-center justify-between p-4'>
+                            {<h1 className='w-1/4  font-bold'>{item?.name}</h1>}
+                            {<h1 className='w-1/4 font-extralight'>{item?.appointment}</h1>}
+                            <div className="w-1/3 p-2">
+                                {<h1 className='font-extralight text-sm'>{item?.email}</h1>}
+                                {<h1 className='font-extralight text-sm'>{item?.phone}</h1>}
                             </div>
-                            <div className=' w-1/4 px-2 items-center justify-between  lg:flex hidden'>
+                            <div className=' w-1/4 px-2 items-center justify-between h-full lg:flex hidden'>
                                 <Checkbox defaultChecked={item?.contacted} onChange={() => { }} className='h-20  text-black'></Checkbox>
-                                <div className='flex gap-1'>
+                                <div className='center h-full gap-1 font-extrabold text-2xl '>
                                     <Button>...</Button>
                                 </div>
                             </div>

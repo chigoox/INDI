@@ -24,12 +24,11 @@ export async function POST(request) {
 
 
         if (event.type === "checkout.session.completed") {
-            const { email, uid, addon } = event.data.object.metadata
+            const { email, uid, addon: addons } = event.data.object.metadata
             const { massageID } = await fetchDocument('Admin', 'meta')
-            console.log(addon, uid)
             await sendEmail(email, 'Booked with Indi!', { ...event.data.object.metadata }, 'send')
             await sendEmail('mistresssero@aol.com', 'New Client!', { ...event.data.object.metadata }, 'new')
-            await addDocument('Reservations', `M-${massageID}`, { ...event.data.object.metadata, paid: true, addons: { ...JSON.parse(addon) } })
+            await addDocument('Reservations', `M-${massageID}`, { ...event.data.object.metadata, paid: true, addons: { ...JSON.parse(addons) } })
             await addToDatabase('Admin', 'meta', 'massageID', massageID + 1)
 
 
