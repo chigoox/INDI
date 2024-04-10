@@ -17,31 +17,33 @@ function ClientManager({ clientList }) {
                 })}
 
             </div>
-            <div className='center-col p-2 lg:px-40 bg-white text-sm  md:text-base text-gray-700'>
-                <div className='w-full shadow-sm font-bold   h-10  flex items-center justify-between px-4'>
+            <div className='center-col p-2 lg:px-40 border h-auto bg-white text-sm   md:text-base text-gray-700'>
+                <div className='w-full fixed top-10 shadow-sm font-bold bg-black text-whites  h-10  flex items-center justify-between px-4'>
                     <h1 className='w-1/4'>Name</h1>
                     <h1 className='w-1/4'>Appointment</h1>
                     <h1 className='w-1/3'>Contact</h1>
                     <h1 className='w-1/4 lg:block hidden'>Status</h1>
                 </div>
-                {(clientList).map((item) => {
-                    return (
-                        <div key={item} className='w-full my-1 rounded shadow-sm text-left  bg-gray-300 h-10  flex items-center justify-between p-4'>
-                            {<h1 className='w-1/4  font-bold'>{item?.name}</h1>}
-                            {<h1 className='w-1/4 font-extralight'>{item?.appointment}</h1>}
-                            <div className="w-1/3 p-2">
-                                {<h1 className='font-extralight text-sm'>{item?.email}</h1>}
-                                {<h1 className='font-extralight text-sm'>{item?.phone}</h1>}
-                            </div>
-                            <div className=' w-1/4 px-2 items-center justify-between h-full lg:flex hidden'>
-                                <Checkbox defaultChecked={item?.contacted} onChange={() => { }} className='h-20  text-black'></Checkbox>
-                                <div className='center h-full gap-1 font-extrabold text-2xl '>
-                                    <Button>...</Button>
+                <div className="top-10 relative center-col">
+                    {(clientList).map((item) => {
+                        return (
+                            <div key={item} className='w-full bg-black my-1 overflow-hidden rounded shadow-sm text-left   text-white h-32 lg:h-10  flex items-center justify-between p-4'>
+                                {<h1 className='w-1/4  font-bold'>{item?.name}</h1>}
+                                {<h1 className='w-1/4 font-extralight'>{item?.appointment}</h1>}
+                                <div className="w-1/3 p-2">
+                                    {<h1 className='lg:font-extralight break-words lg:text-sm'>{item?.email}</h1>}
+                                    {<h1 className='lg:font-extralight text-sm'>{item?.phone}</h1>}
+                                </div>
+                                <div className=' w-1/4 px-2 items-center justify-between h-full lg:flex hidden'>
+                                    <Checkbox defaultChecked={item?.contacted} onChange={() => { }} className='h-20  text-black'></Checkbox>
+                                    <div className='center h-full gap-1 font-extrabold text-2xl '>
+                                        <Button>...</Button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
 
             </div>
 

@@ -40,12 +40,13 @@ function Page() {
 
     await fetchDocument('Admin', 'onHold', setAdminadminReservation)
 
-
-
     await fetchDocument('Admin', 'onHold', setAdminadminReservation)
     await updateDatabaseItem('Admin', 'onHold', uid)
     await updateDatabaseItem('Users', uid, 'willBook')
     setLoading(false)
+
+    window.location.href = '/'
+
   }
 
   const canceledBook = async () => {
@@ -55,6 +56,8 @@ function Page() {
     if (loggedInUser) {
     }
     setLoading(false)
+    window.location.href = '/'
+
   }
 
 

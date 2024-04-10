@@ -12,7 +12,7 @@ async function page() {
 
     return (
         <div>
-            <ClientManager clientList={clientList} />
+            <ClientManager clientList={clientList.reverse()} />
         </div>
     )
 }
