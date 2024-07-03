@@ -29,7 +29,7 @@ export async function POST(request) {
                 currency: 'usd',
                 unit_amount: price * 100,
                 product_data: {
-                    name: name,
+                    name: 'Massage',
                     description: 'Your booking deposit fee',
                     images: [img],
                 },
