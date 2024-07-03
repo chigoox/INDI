@@ -46,29 +46,32 @@ const AvailableHours = memo(({ freeTimes, setBookingInfo, setReload, reload }) =
                 </span>
             </span>
             <div className="grid lg:grid-cols-3 grid-cols-5 md:grid-cols-2    text-md gap-4 md:h-[35rem] hidescroll p-4 overflow-y-scroll">
-                {freeTimes.map((hour, hourIdx) => (
-                    <div key={hourIdx}>
-                        <button
-                            type="button"
-                            className={cn(
-                                "bg-gray-800 trans-slow rounded-lg px-2 text-purple-300 relative hover:border hover:border-gray-900 w-[64px] h-[64px]",
-                                selectedTime &&
-                                isSameMinute(selectedTime, hour) &&
-                                "bg-purple-300 text-gray-800"
-                            )}
-                            onClick={() => { setSelectedTime(hour); setReload(!reload) }}
-                        >
-                            <CheckCircle2
-                                color="purple"
+                {freeTimes.map((hour, hourIdx) => {
+                    console.log(hour)
+                    return (
+                        <div key={hourIdx}>
+                            <button
+                                type="button"
                                 className={cn(
-                                    "w-[16px] h-[16px] absolute hidden top-0 right-0 transform translate-x-1 -translate-y-1.5 text-purple-700",
-                                    selectedTime && isSameMinute(selectedTime, hour) && "block"
+                                    "bg-gray-800 trans-slow rounded-lg px-2 text-purple-300 relative hover:border hover:border-gray-900 w-[64px] h-[64px]",
+                                    selectedTime &&
+                                    isSameMinute(selectedTime, hour) &&
+                                    "bg-purple-300 text-gray-800"
                                 )}
-                            />
-                            {format(hour, "HH:mm")}
-                        </button>
-                    </div>
-                ))}
+                                onClick={() => { setSelectedTime(hour); setReload(!reload) }}
+                            >
+                                <CheckCircle2
+                                    color="purple"
+                                    className={cn(
+                                        "w-[16px] h-[16px] absolute hidden top-0 right-0 transform translate-x-1 -translate-y-1.5 text-purple-700",
+                                        selectedTime && isSameMinute(selectedTime, hour) && "block"
+                                    )}
+                                />
+                                {format(hour, "hh:mm a")}
+                            </button>
+                        </div>
+                    )
+                })}
             </div>
             {selectedTime && (
                 <div className="w-full py-6">
