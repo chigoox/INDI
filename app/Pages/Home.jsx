@@ -52,7 +52,7 @@ function Home({ setPage }) {
 
             <div className='h-1/2 w-[101%] bottom-0 left-0 absolute opacity-75 z-[1] bg-black'>
                 <div className='relative bottom-40 h-40'>
-                    <h1 className='text-8xl text-center font-extrabold'>IndIi</h1>
+                    <h1 className='text-8xl text-center font-extrabold'>Indy</h1>
 
                 </div>
             </div>
