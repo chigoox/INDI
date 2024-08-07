@@ -16,7 +16,7 @@ function Page3({ setBookingInfo, setPage }) {
         <div className='h-screen w-screen center text-white flex flex-col md:items-center justify-center  bg-black'>
             <div className=' md:w-1/2'>
                 <div className=' '>
-                    <h1 className='text-center'>Bundel and save!</h1>
+                    <h1 className='text-center'>Bundle and save!</h1>
                     <button onClick={() => { toggleBundle() }} className={`${addBundle ? 'bg-purple-700' : 'bg-black'} h-12 w-3/4 m-auto border center hover:text-white trans`}>
                         Save $100 buy bundle
                     </button>

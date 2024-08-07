@@ -138,11 +138,11 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
     let total = bookingInfo.price + (Object.values(bookingInfo.addOns).map((item) => { if (item == true) return item }).length) * 30
     console.log(total)
     total = (total * (bookingInfo.bundle ? 1.0 : 0.50) * (bookingInfo.bundle ? 4.0 : 1.0)) - (bookingInfo.bundle ? 50 : 0), //if bundled( price * 4 - 50) else (price/2)
-        console.log(total)
-    useEffect(() => {
-        fetchDocument('Admin', 'reservations', setAdminDATA)
 
-    }, [reload, calendarTouched, selectedDay])
+        useEffect(() => {
+            fetchDocument('Admin', 'reservations', setAdminDATA)
+
+        }, [reload, calendarTouched, selectedDay])
 
 
 
@@ -357,11 +357,12 @@ const Bookings = ({ bookingInfo, setBookingInfo }) => {
             }
             {bookingInfo.apointment && <div id="checkout" className=' mb-96  center flex-col text-white p-2'>
                 <h1 className='text-xl text-center'>{`Your reservation is on ${bookingInfo.apointment}`}</h1>
-                <h1 className='text-center text-pink-700'>depoit half to comfirm booking</h1>
+                <h1 className='text-center text-pink-700'>50% Deposit + 20% gratuity fee to comfirm booking</h1>
                 <div className='center gap-1'>
-                    <h1 className='text-center text-pink-700 text-5xl'>{'$' + total}</h1>
-                    <h1>+ Tax</h1>
+                    <h1 className='text-center text-pink-700 text-5xl'>${total / 2}</h1>
+                    <h1>+ ${total * 0.20} Tip</h1>
                 </div>
+                <h1 className='text-center text-pink-700'>${total / 2} due at meetup</h1>
                 <div className=" flex md:flex-row flex-col items-start justify-center gap-4 mb-8">
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Full name" type="text" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userName: target.value }) }) }} />
                     <input className="h-10 my-2 p-2 rounded-lg text-black" placeholder="Email" type="email" onChange={({ target }) => { setBookingInfo(old => { return ({ ...old, userEmail: target.value }) }) }} />
